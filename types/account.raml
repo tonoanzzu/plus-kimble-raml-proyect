@@ -1,0 +1,17 @@
+#%RAML 1.0
+types:
+  account:
+    type: object
+    description: Entity representing an account
+    properties:
+      id:
+        type: string
+        description: Account Identifier
+        reuquired: true
+      account_name:
+        type: string
+        description: Account name
+        required: true
+      fk_family:
+        type: integer
+        description: Family to which the account belongs
