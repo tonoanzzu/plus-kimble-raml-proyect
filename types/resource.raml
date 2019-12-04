@@ -1,0 +1,43 @@
+#%RAML 1.0
+types:
+  resource:
+    type:object
+    description: Entity that represent an resource
+    properties:
+      id:
+        type: number
+        description: identify of the resource
+        required: true
+      name:
+        type: string
+        description: identify the name of the resource
+        required: false
+      last_name:
+        type: number
+        description: identify the last name of the resource
+        required: false
+      second_last_name:
+        type: string
+        description: identify the second last name of the resource
+        required: false
+      fkResourceStatus:
+        type: number
+        description: identify the state of the resource
+        required: false
+      letters_gft: 
+        type: string
+        description: identify the letters of the resource
+        required: false
+      starting_date:
+        type: string
+        description: identify the admission date of the resource
+        required: false
+      end_date:
+        type: string
+        description: identify the last date of the resource
+        required: false
+      comentary:
+        type: string
+        description: identify the text referring to a resource
+        required: false
+      

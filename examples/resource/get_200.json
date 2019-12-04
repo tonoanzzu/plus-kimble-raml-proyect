@@ -1,0 +1,45 @@
+{
+	"data": [
+		{
+			"id": 800216, 
+			"name": "Antonio", 
+			"last_name": "Anzures", 
+			"second_last_name": "Montecillo", 
+			"fkResourceStatus": 1, 
+			"letters_gft": "JOAZ", 
+			"starting_date": "2019-04-29", 
+			"end_date": "", 
+			"comentary": ""
+		},
+		{
+			"id": 5345243,
+			"nombre": "Antonio",
+			"apellido_paterno": "Anzures",
+			"apellido_materno": "Montecillo",
+			"fkEstadoRecursos": "1", 
+			"fecha_ingreso":"2001-08-01",
+			"fecha_salida":"",
+			"comentario":""
+		},
+		{
+			"id": 7634534,
+			"nombre": "Antonio",
+			"apellido_paterno": "Anzures",
+			"apellido_materno": "Montecillo",
+			"fkEstadoRecursos": "1", 
+			"fecha_ingreso":"2001-08-01",
+			"fecha_salida":"",
+			"comentario":""
+		},
+		{
+			"id": 5435234,
+			"nombre": "Antonio",
+			"apellido_paterno": "Anzures",
+			"apellido_materno": "Montecillo",
+			"fkEstadoRecursos": "1", 
+			"fecha_ingreso":"2001-08-01",
+			"fecha_salida":"",
+			"comentario":""
+		}
+	]
+}
