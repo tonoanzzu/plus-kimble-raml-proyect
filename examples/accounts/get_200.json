@@ -1,0 +1,19 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "account_name": "BANCO 1",
+      "fk_family": 1
+    },
+    {
+      "id": 2,
+      "account_name": "BANCO 2",
+      "fk_family": 1
+    },
+    {
+      "id": 3,
+      "account_name": "BANCO 3",
+      "fk_family": 1
+    }
+  ]
+}
