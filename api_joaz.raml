@@ -326,5 +326,101 @@ traits:
           body:
             application/json:
               example: !include examples/kimble_status/kimble_status_id/patch_200.json
-  
-  
+
+
+/resource_status:
+  description: |
+    kimble status list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      resource_status lists
+    queryParameters:
+      kimble_status.id:
+        description: |
+          identify of the resource_status 
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        description: |
+          identify the name of the status kimble
+        type: string
+        required: true
+        example: "Active"
+      
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/kimble_status/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      kimble_status.id:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+    responses:
+        200:
+          body:
+            application/json:
+              type: kimble_status
+              example: !include examples/kimble_status/post_200.json
+  /{kimble_status-id}:
+    get:
+      uriParameters:
+        kimble_status-id:
+          type: number
+          description: kimble_status identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: kimble_status
+              example: !include examples/kimble_status/kimble_status_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/patch_200.json
