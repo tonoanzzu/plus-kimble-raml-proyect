@@ -1,0 +1,676 @@
+#%RAML 1.0
+title: pluskimble
+description: pluskimble Api
+version: 0.0
+baseUri: http://localhost:8081/pluskimble/v0
+
+uses:
+  resource:  types/resource.raml
+  kimble_status: types/kimble_status.raml
+  proyect_resource: types/proyect_resource.raml
+  attempt: types/attempt.raml
+  resource_status: types/resource_status.raml
+  resource_project_hours: types/resource_project_hours.raml
+  pagination: glapi-global-apis-commons-commons/types/pagination.raml
+
+resourceTypes: 
+  collection: !include glapi-global-apis-commons-commons/resourceTypes/collection.raml
+
+traits: 
+  pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
+
+/resource:
+  description: |
+    resource list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      resource lists
+    queryParameters:
+      resource.id:
+        description: |
+          resource id
+        type: number
+        required: false
+        example: 1
+      resource.name:
+        description: |
+          resource name
+        type: string
+        required: false
+        example: "ANTONIO"
+      resource.last_name:
+        description: |
+          resource last name
+        type: string
+        required: false
+        example: "ANZURES"
+      resource.second_last_name:
+        description: |
+          resource second last name
+        type: string
+        required: false
+        example: "MONTECILLO"
+      resource.fkResourceStatus:
+        description: |
+          resource status
+        type: number
+        required: true
+        example: 1
+      resource.letters_gft:
+        description: |
+          resource letter identifier
+        type: string
+        required: false
+        example: "JOAZ"
+      resource.starting_date:
+        description: |
+          resource date incomming work
+        type: string
+        required: false
+        example: "2019-10-10"
+      resource.end_date:
+        description: |
+          resource date work out
+        type: string
+        required: false
+        example: "2023-10-10"
+      resource.comentary:
+        description: |
+          identify the text referring to a resource
+        type: string
+        required: false
+        example: "PRUEBA DE COMENTARIO"
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/resources/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      resource.name:
+        type: string
+        required: false
+        example: "ANTONIO"
+      resource.last_name:
+        type: string
+        required: false
+        example: "ANZURES"
+      resource.second_last_name:
+        type: string
+        required: false
+        example: "MONTECILLO"
+      resource.fkResourceStatus:
+        type: number
+        required: true
+        example: 1
+      resource.letters_gft:
+        type: string
+        required: false
+        example: "JOAZ"
+      resource.starting_date:
+        type: string
+        required: false
+        example: "2019-10-10"
+      resource.end_date:
+        type: string
+        required: false
+        example: "2023-10-10"
+      resource.comentary:
+        type: string
+        required: false
+        example: "PRUEBA DE COMENTARIO"
+    responses:
+        200:
+          body:
+            application/json:
+              type: resource
+              example: !include examples/resource/resource_id/post_200.json
+  /{resource-id}:
+    get:
+      uriParameters:
+        resource-id:
+          type: number
+          description: resource identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: resource
+              example: !include examples/resource/resource_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+          resource.name:
+        type: string
+        required: false
+        example: "ANTONIO"
+      resource.last_name:
+        type: string
+        required: false
+        example: "ANZURES"
+      resource.second_last_name:
+        type: string
+        required: false
+        example: "MONTECILLO"
+      resource.fkResourceStatus:
+        type: number
+        required: true
+        example: 1
+      resource.letters_gft:
+        type: string
+        required: false
+        example: "JOAZ"
+      resource.starting_date:
+        type: string
+        required: false
+        example: "2019-10-10"
+      resource.end_date:
+        type: string
+        required: false
+        example: "2023-10-10"
+      resource.comentary:
+        type: string
+        required: false
+        example: "PRUEBA DE COMENTARIO"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource/resource_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            resource.name:
+        type: string
+        required: false
+        example: "ANTONIO"
+      resource.last_name:
+        type: string
+        required: false
+        example: "ANZURES"
+      resource.second_last_name:
+        type: string
+        required: false
+        example: "MONTECILLO"
+      resource.fkResourceStatus:
+        type: number
+        required: true
+        example: 1
+      resource.letters_gft:
+        type: string
+        required: false
+        example: "JOAZ"
+      resource.starting_date:
+        type: string
+        required: false
+        example: "2019-10-10"
+      resource.end_date:
+        type: string
+        required: false
+        example: "2023-10-10"
+      resource.comentary:
+        type: string
+        required: false
+        example: "PRUEBA DE COMENTARIO"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource/resource_id/patch_200.json
+
+/kimble_status:
+  description: |
+    kimble status list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      kimble_status lists
+    queryParameters:
+      kimble_status.id:
+        description: |
+          identify of the kimble_status 
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        description: |
+          identify the name of the status kimble
+        type: string
+        required: true
+        example: "Approved"
+      
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/kimble_status/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      kimble_status.id:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Approved"
+    responses:
+        200:
+          body:
+            application/json:
+              type: kimble_status
+              example: !include examples/kimble_status/post_200.json
+  /{kimble_status-id}:
+    get:
+      uriParameters:
+        kimble_status-id:
+          type: number
+          description: kimble_status identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: kimble_status
+              example: !include examples/kimble_status/kimble_status_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Approved"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Approved"
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/patch_200.json
+
+
+/resource_status:
+  description: |
+    resource status list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      resource status lists
+    queryParameters:
+      resource_status.id:
+        description: |
+          identify of the resource_status 
+        type: number
+        required: false
+        example: 1
+      resource_status.status_name:
+        description: |
+          identify the name of the resource status kimble
+        type: string
+        required: true
+        example: "Active"
+      
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/resource_status/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      resource_status.id:
+        type: number
+        required: false
+        example: 1
+      resource_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+    responses:
+        200:
+          body:
+            application/json:
+              type: resource_status
+              example: !include examples/resource_status/post_200.json
+  /{resource_status-id}:
+    get:
+      uriParameters:
+        resource_status-id:
+          type: number
+          description: resource_status identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: resource_status
+              example: !include examples/resource_status/resource_status_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+        type: number
+        required: false
+        example: 1
+      resource_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_status/resource_status_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            type: number
+        required: false
+        example: 1
+      resource_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_status/resource_status_id/patch_200.json
+
+/attempt:
+  description: |
+    resource status list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      resource status lists
+    queryParameters:
+      attempt.id:
+        description: |
+          identify of the attempt 
+        type: number
+        required: false
+        example: 1
+      attempt.crated_date:
+        description: |
+          identify the date of the attempt
+        type: string
+        required: true
+        example: "2010-10-10T11:11:11"
+      attempt.attempt_name:
+        description: |
+          identify the attempt name 
+        type: string
+        required: true
+        example: "Active"
+      attempt.consecutive:
+        description: |
+          identify the number consecutive of the attempt
+        type: number
+        required: true
+        example: 20
+      
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/attempt/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      attempt.crated_date:
+        type: string
+        required: true
+        example: "2010-10-10T11:11:11"
+      attempt.attempt_name:
+        type: string
+        required: true
+        example: "Active"
+      attempt.consecutive:
+        type: number
+        required: true
+        example: 20
+    responses:
+        200:
+          body:
+            application/json:
+              type: attempt
+              example: !include examples/attempt/post_200.json
+  /{attempt-id}:
+    get:
+      uriParameters:
+        attempt-id:
+          type: number
+          description: attempt identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: attempt
+              example: !include examples/attempt/attempt_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+      
+      attempt-id:
+        type: number
+        required: false
+        example: 1
+      attempt.crated_date:
+        type: string
+        required: true
+        example: "2010-10-10T11:11:11"
+      attempt.attempt_name:
+        type: string
+        required: true
+        example: "Active"
+      attempt.consecutive:
+        type: number
+        required: true
+        example: 20
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/attempt/attempt_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+          attempt-id:
+            type: number
+            required: false
+            example: 1
+          attempt.crated_date:
+            type: string
+            required: true
+            example: "2010-10-10T11:11:11"
+          attempt.attempt_name:
+            type: string
+            required: true
+            example: "Active"
+          attempt.consecutive:
+            type: number
+            required: true
+            example: 20
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/attempt/attempt_id/patch_200.json
+
+
+
+/resource_project_hours:
+  description: |
+    relation between resources projects and hours list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      relation between resources projects and hours list
+    queryParameters:
+      resource_project_hours.id:
+        description: |
+          identify of the relation resource_project_hours 
+        type: number
+        required: false
+        example: 1
+      resource_project_hours.fk_hours_resource:
+        description: |
+          identify the foreign key of the element hours resource
+        type: number
+        required: false
+        example: 134
+      resource_project_hours.fk_resource_project:
+        description: |
+          identify the foreign key of the relation resource proyect
+        type: number
+        required: false
+        example: 203
+     
+      
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/resource_project_hours/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      resource_project_hours.id:
+        type: number
+        required: false
+        example: 1
+      resource_project_hours.fk_hours_resource:
+        type: number
+        required: false
+        example: 203
+      resource_project_hours.fk_resource_project:
+        type: number
+        required: false
+        example: 213
+    responses:
+        200:
+          body:
+            application/json:
+              type: resource_project_hours
+              example: !include examples/resource_project_hours/post_200.json
+
+  /{resource_project_hours-id}:
+    get:
+      uriParameters:
+        resource_project_hours-id:
+          type: number
+          description: resource_project_hours identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: resource_project_hours
+              example: !include examples/resource_project_hours/resource_project_hours_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+      
+      resource_project_hours.id:
+        type: number
+        required: false
+        example: 1
+      resource_project_hours.fk_hours_resource:
+        type: number
+        required: false
+        example: 253
+      resource_project_hours.fk_resource_project:
+        type: number
+        required: true
+        example: 204
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_project_hours/resource_project_hours_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+          resource_project_hours.id:
+            type: number
+            required: false
+            example: 1
+          resource_project_hours.fk_hours_resource:
+            type: number
+            required: false
+            example: 253
+          resource_project_hours.fk_resource_project:
+            type: number
+            required: true
+            example: 204
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_project_hours/resource_project_hours_id/patch_200.json
