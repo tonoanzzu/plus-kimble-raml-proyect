@@ -192,35 +192,139 @@ traits:
       body:
         application/json:
           properties:
-            pluskimble.address:
-              type: string
-              required: false
-              example: "Insurgentes Sur 345, Hipódromo, 06170, CDMX"
-            pluskimble.contact:
-              type: number
-              required: false
-              example: 55674309
-            pluskimble.schedule:
-              type: string
-              required: false
-              example: "Lunes a Domingo de 9:00am a 8:00pm"
-            pluskimble.logo:
-              type: string
-              required: false
-              example: "logo.jpg"
-            pluskimble.name:
-              type: string
-              required: false
-              example: "logo.jpg"
+            resource.name:
+        type: string
+        required: false
+        example: "ANTONIO"
+      resource.last_name:
+        type: string
+        required: false
+        example: "ANZURES"
+      resource.second_last_name:
+        type: string
+        required: false
+        example: "MONTECILLO"
+      resource.fkResourceStatus:
+        type: number
+        required: true
+        example: 1
+      resource.letters_gft:
+        type: string
+        required: false
+        example: "JOAZ"
+      resource.starting_date:
+        type: string
+        required: false
+        example: "2019-10-10"
+      resource.end_date:
+        type: string
+        required: false
+        example: "2023-10-10"
+      resource.comentary:
+        type: string
+        required: false
+        example: "PRUEBA DE COMENTARIO"
       responses:
         200:
           body:
             application/json:
-              example: !include examples/pluskimbles/pluskimble_id/patch_200.json
-    delete:
+              example: !include examples/resource/resource_id/patch_200.json
+
+/kimble_status:
+  description: |
+    kimble status list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      kimble_status lists
+    queryParameters:
+      kimble_status.id:
+        description: |
+          identify of the kimble_status 
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        description: |
+          identify the name of the status kimble
+        type: string
+        required: true
+        example: "Active"
+      
+
+    responses:
+      200:
+        body:
+          application/json:
+            type: resources
+            example: !include examples/kimble_status/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      kimble_status.id:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+    responses:
+        200:
+          body:
+            application/json:
+              type: kimble_status
+              example: !include examples/kimble_status/post_200.json
+  /{kimble_status-id}:
+    get:
+      uriParameters:
+        kimble_status-id:
+          type: number
+          description: kimble_status identifier
+          # minLength: 1
+          # maxLength: 10
       responses:
         200:
           body:
             application/json:
-              example: !include examples/pluskimbles/pluskimble_id/delete_200.json
-    
+              type: kimble_status
+              example: !include examples/kimble_status/kimble_status_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/patch_200.json
+  
+  
