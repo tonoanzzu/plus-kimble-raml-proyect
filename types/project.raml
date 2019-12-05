@@ -1,0 +1,22 @@
+#%RAML 1.0
+types:
+  project:
+    type: object
+    description: Project
+    properties:
+      id:
+        type: integer
+        description: Project
+        reuquired: true
+      project_name:
+        type: string
+        description: Project name
+        required: true
+      fk_account:
+        type: string
+        description: Account associated with the project
+        required: true
+      fk_pm:
+        type: integer
+        description: Project magement
+        required: true
