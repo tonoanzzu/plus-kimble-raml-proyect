@@ -328,7 +328,7 @@ traits:
         200:
           body:
             application/json:
-              type: month
+              type: non_work_day
               example: !include examples/non_work_days/non_work_day_id/get_200.json
 
     patch:
@@ -355,7 +355,7 @@ traits:
         200:
           body:
             application/json:
-              example: !include examples/non_work_day/non_work_day_id/patch_200.json
+              example: !include examples/non_work_days/non_work_day_id/patch_200.json
 
 /projects:
   description: |
