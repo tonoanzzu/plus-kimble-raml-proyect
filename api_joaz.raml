@@ -547,14 +547,11 @@ traits:
             type: number
             required: true
             example: 20
-
       responses:
         200:
           body:
             application/json:
               example: !include examples/attempt/attempt_id/patch_200.json
-
-
 
 /resource_project_hours:
   description: |
@@ -583,8 +580,6 @@ traits:
         type: number
         required: false
         example: 203
-     
-      
     responses:
       200:
         body:
@@ -668,9 +663,170 @@ traits:
             type: number
             required: true
             example: 204
-
       responses:
         200:
           body:
             application/json:
               example: !include examples/resource_project_hours/resource_project_hours_id/patch_200.json
+
+/resource_project:
+  description: |
+    relation between resources and projects list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      relation between resources and projects list
+    queryParameters:
+      resource_project.id:
+        description: |
+          identify of the relation resources and project
+        type: number
+        required: false
+        example: 1
+      resource_project.fk_resource:
+        description: |
+          identify the foreign key of the element hours resource
+        type: number
+        required: false
+        example: 134
+      resource_project.fk_project:
+        description: |
+          identify the foreign key of the relation resource proyect
+        type: number
+        required: false
+        example: 203
+      resource_project.status:
+        description: |
+          identify the status of the relation  between resources and projects
+        type: string
+        example: 203
+      resource_project.starting_date:
+        description: |
+          identify the admission date of  relation  between resources and projects
+        type: string
+        example: "2018-12-10"
+      resource_project.end_date:
+        description: |
+          identify the last date of the  relation  between resources and projects
+        type: string
+        example: "2019-10-10"
+     
+    responses:
+      200:
+        body:
+          application/json:
+            type: resource_project
+            example: !include examples/resource_project/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+      resource_project.fk_resource:
+        type: number
+        required: false
+        example: 720079
+      resource_project.fk_project:
+        type: string
+        required: false
+        example: "KE013300"
+      resource_project.status:
+        type: number
+        required: false
+        example: 1
+      resource_project.starting_date:
+        type: string
+        required: false
+        example: "2019-02-29"
+      resource_project.end_date:
+        type: string
+        required: false
+        example: "2019-02-29"
+    responses:
+        200:
+          body:
+            application/json:
+              type: resource_project
+              example: !include examples/resource_project/post_200.json
+
+  /{resource_project-id}:
+    get:
+      uriParameters:
+        resource_project-id:
+          type: number
+          description: describe an element of the relation between resource project
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: resource_project
+              example: !include examples/resource_project/resource_project_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+            resource_project.id:
+              type: number
+              required: false
+              example: 1
+            resource_project.fk_resource:
+              type: number
+              required: false
+              example: 720079
+            resource_project.fk_project:
+              type: string
+              required: false
+              example: "KE013300"
+            resource_project.status:
+              type: number
+              required: false
+              example: 1
+            resource_project.starting_date:
+              type: string
+              required: false
+              example: "2019-02-29"
+            resource_project.end_date:
+              type: string
+              required: false
+              example: "2019-02-29"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_project/resource_project_id/put_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+          resource_project.id:
+            type: number
+            required: false
+            example: 1
+          resource_project.fk_resource:
+            type: number
+            required: false
+            example: 720079
+          resource_project.fk_project:
+            type: string
+            required: false
+            example: "KE013300"
+          resource_project.status:
+            type: number
+            required: false
+            example: 1
+          resource_project.starting_date:
+            type: string
+            required: false
+            example: "2019-02-29"
+          resource_project.end_date:
+            type: string
+            required: false
+            example: "2019-02-29"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_project/resource_project_id/patch_200.json
