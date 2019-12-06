@@ -1,0 +1,681 @@
+<!DOCTYPE HTML><html><head><title>pluskimble API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/raml2html/raml2html 7.4.0"><link rel="stylesheet" href="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/default.min.css"><script type="text/javascript" src="https://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script><script type="text/javascript">
+      $(document).ready(function() {
+  $('.page-header pre code, .top-resource-description pre code, .modal-body pre code').each(function(i, block) {
+    hljs.highlightBlock(block);
+  });
+
+  $('[data-toggle]').click(function() {
+    var selector = $(this).data('target') + ' pre code';
+    $(selector).each(function(i, block) {
+      hljs.highlightBlock(block);
+    });
+  });
+
+  // open modal on hashes like #_action_get
+  $(window).bind('hashchange', function(e) {
+    var anchor_id = document.location.hash.substr(1); //strip #
+    var element = $('#' + anchor_id);
+
+    // do we have such element + is it a modal?  --> show it
+    if (element.length && element.hasClass('modal')) {
+      element.modal('show');
+    }
+  });
+
+  // execute hashchange on first page load
+  $(window).trigger('hashchange');
+
+  // remove url fragment on modal hide
+  $('.modal').on('hidden.bs.modal', function() {
+    try {
+      if (history && history.replaceState) {
+          history.replaceState({}, '', '#');
+      }
+    } catch(e) {}
+  });
+});
+    </script><style>
+      .hljs {
+  background: transparent;
+}
+.parent {
+  color: #999;
+}
+.list-group-item > .badge {
+  float: none;
+  margin-right: 6px;
+}
+.panel-title > .methods {
+  float: right;
+}
+.badge {
+  border-radius: 0;
+  text-transform: uppercase;
+  width: 70px;
+  font-weight: normal;
+  color: #f3f3f6;
+  line-height: normal;
+}
+.badge_get {
+  background-color: #63a8e2;
+}
+.badge_post {
+  background-color: #6cbd7d;
+}
+.badge_put {
+  background-color: #22bac4;
+}
+.badge_delete {
+  background-color: #d26460;
+}
+.badge_patch {
+  background-color: #ccc444;
+}
+.list-group,
+.panel-group {
+  margin-bottom: 0;
+}
+.panel-group .panel+.panel-white {
+  margin-top: 0;
+}
+.panel-group .panel-white {
+  border-bottom: 1px solid #F5F5F5;
+  border-radius: 0;
+}
+.panel-white:last-child {
+  border-bottom-color: white;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.panel-white .panel-heading {
+  background: white;
+}
+.tab-pane ul {
+  padding-left: 2em;
+}
+.tab-pane h1 {
+  font-size: 1.3em;
+}
+.tab-pane h2 {
+  font-size: 1.2em;
+  padding-bottom: 4px;
+  border-bottom: 1px solid #ddd;
+}
+.tab-pane h3 {
+  font-size: 1.1em;
+}
+.tab-content {
+  border-left: 1px solid #ddd;
+  border-right: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  padding: 10px;
+}
+#sidebar {
+  margin-top: 30px;
+  padding-right: 5px;
+  overflow: auto;
+  height: 90%;
+}
+.top-resource-description {
+  border-bottom: 1px solid #ddd;
+  background: #fcfcfc;
+  padding: 15px 15px 0 15px;
+  margin: -15px -15px 10px -15px;
+}
+.resource-description {
+  border-bottom: 1px solid #fcfcfc;
+  background: #fcfcfc;
+  padding: 15px 15px 0 15px;
+  margin: -15px -15px 10px -15px;
+}
+.resource-description p:last-child {
+  margin: 0;
+}
+.list-group .badge {
+  float: left;
+}
+.method_description {
+  margin-left: 85px;
+}
+.method_description p:last-child {
+  margin: 0;
+}
+.list-group-item {
+  cursor: pointer;
+}
+.list-group-item:hover {
+  background-color: #f5f5f5;
+}
+pre code {
+  overflow: auto;
+  word-wrap: normal;
+  white-space: pre;
+}
+.items {
+  background: #f5f5f5;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 9.5px;
+  margin: 0 0 10px;
+  font-size: 13px;
+  line-height: 1.42857143;
+}
+.examples {
+  margin-left: 0.5em;
+}
+.resource-modal li > ul {
+  margin-bottom: 1em;
+}
+.required {
+  color: #f00;
+}
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>pluskimble API documentation <small>version 0.0</small></h1><p>http://localhost:8081/pluskimble/v0</p><p>pluskimble Api</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="accounts" class="panel-title">/accounts</h3></div><div class="panel-body"><div class="top-resource-description"><p>Accounts</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_accounts"><span class="parent"></span>/accounts</a> <span class="methods"><a href="#accounts_get"><span class="badge badge_get">get</span></a> <a href="#accounts_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_accounts" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#accounts_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>accounts list</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#accounts_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="accounts_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/accounts</h4></div><div class="modal-body"><div class="alert alert-info"><p>accounts list</p></div><ul class="nav nav-tabs"><li class="active"><a href="#accounts_get_request" data-toggle="tab">Request</a></li><li><a href="#accounts_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="accounts_get_request"><h3>Query Parameters</h3><ul><li><strong>account.id</strong>: <em><span class="required">required</span>(string)</em><p>Account id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2</code></pre></div></li><li><strong>account.account_name</strong>: <em><span class="required">required</span>(string)</em><p>Account namee</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Banco 1</code></pre></div></li><li><strong>account.fk_family</strong>: <em><span class="required">required</span>(number)</em><p>Family to which the account belongs</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="accounts_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: account</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": [
+    {
+      "id": 1,
+      "account_name": "BANCO 1",
+      "fk_family": 1
+    },
+    {
+      "id": 2,
+      "account_name": "BANCO 2",
+      "fk_family": 1
+    },
+    {
+      "id": 3,
+      "account_name": "BANCO 3",
+      "fk_family": 1
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="accounts_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/accounts</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#accounts_post_request" data-toggle="tab">Request</a></li><li><a href="#accounts_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="accounts_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>account.id</strong>: <em><span class="required">required</span>(string)</em><p>Account id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2</code></pre></div></li><li><strong>account.account_name</strong>: <em><span class="required">required</span>(string)</em><p>Account name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Banco 1</code></pre></div></li><li><strong>account.fk_family</strong>: <em><span class="required">required</span>(number)</em><p>Family to which the account belongs</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="accounts_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: account</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "status": 200,
+      "response": "Account updated with success"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_accounts__account_id_"><span class="parent">/accounts</span>/{account-id}</a> <span class="methods"><a href="#accounts__account_id__get"><span class="badge badge_get">get</span></a> <a href="#accounts__account_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_accounts__account_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#accounts__account_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#accounts__account_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="accounts__account_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/accounts</span>/{account-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#accounts__account_id__get_request" data-toggle="tab">Request</a></li><li><a href="#accounts__account_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="accounts__account_id__get_request"><h3>URI Parameters</h3><ul><li><strong>account-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="accounts__account_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: account</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": "1",
+      "account_name": "BAANCO 1",
+      "fk_family": 1
+    }
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="accounts__account_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/accounts</span>/{account-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#accounts__account_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#accounts__account_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="accounts__account_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>account-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>account.id</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>account.name</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>Banco 1</code></pre></div></li><li><strong>account.fk_family</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="accounts__account_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "status": 200,
+      "response": "Account updated with success"
+    }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="cost_families" class="panel-title">/cost_families</h3></div><div class="panel-body"><div class="top-resource-description"><p>Cost families</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_cost_families"><span class="parent"></span>/cost_families</a> <span class="methods"><a href="#cost_families_get"><span class="badge badge_get">get</span></a> <a href="#cost_families_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_cost_families" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#cost_families_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>lists all cost faamilies</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#cost_families_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="cost_families_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/cost_families</h4></div><div class="modal-body"><div class="alert alert-info"><p>lists all cost faamilies</p></div><ul class="nav nav-tabs"><li class="active"><a href="#cost_families_get_request" data-toggle="tab">Request</a></li><li><a href="#cost_families_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="cost_families_get_request"><h3>Query Parameters</h3><ul><li><strong>cost_family.id</strong>: <em><span class="required">required</span>(number)</em><p>Cost family id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>cost_family.cost_family</strong>: <em><span class="required">required</span>(string)</em><p>Cost family</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Cost family</code></pre></div></li></ul></div><div class="tab-pane" id="cost_families_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: cost_family</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": [
+    {
+      "id": 1,
+      "cost_families": "Cost Family"
+    },
+    {
+      "id": 2,
+      "cost_families": "Cost Family"
+    },
+    {
+      "id": 2,
+      "cost_families": "Cost Family"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="cost_families_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/cost_families</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#cost_families_post_request" data-toggle="tab">Request</a></li><li><a href="#cost_families_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="cost_families_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>cost_family.id</strong>: <em><span class="required">required</span>(number)</em><p>Identifier of a cost family</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="cost_families_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: cost_family</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "status": 200,
+      "response": "The cost family has been created successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_cost_families__cost_family_id_"><span class="parent">/cost_families</span>/{cost_family-id}</a> <span class="methods"><a href="#cost_families__cost_family_id__get"><span class="badge badge_get">get</span></a> <a href="#cost_families__cost_family_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_cost_families__cost_family_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#cost_families__cost_family_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#cost_families__cost_family_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="cost_families__cost_family_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/cost_families</span>/{cost_family-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#cost_families__cost_family_id__get_request" data-toggle="tab">Request</a></li><li><a href="#cost_families__cost_family_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="cost_families__cost_family_id__get_request"><h3>URI Parameters</h3><ul><li><strong>cost_family-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="cost_families__cost_family_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: cost_family</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "cost_families": "MANAGEMENT"
+    }
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="cost_families__cost_family_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/cost_families</span>/{cost_family-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#cost_families__cost_family_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#cost_families__cost_family_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="cost_families__cost_family_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>cost_family-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>cost_family.id</strong>: <em><span class="required">required</span>(integer)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>cost_family.cost_family</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>Banco 1</code></pre></div></li></ul></div><div class="tab-pane" id="cost_families__cost_family_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "status": 200,
+      "response": "Cost family updated successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="months" class="panel-title">/months</h3></div><div class="panel-body"><div class="top-resource-description"><p>Month list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_months"><span class="parent"></span>/months</a> <span class="methods"><a href="#months_get"><span class="badge badge_get">get</span></a> <a href="#months_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_months" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#months_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Month list</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#months_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="months_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/months</h4></div><div class="modal-body"><div class="alert alert-info"><p>Month list</p></div><ul class="nav nav-tabs"><li class="active"><a href="#months_get_request" data-toggle="tab">Request</a></li><li><a href="#months_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="months_get_request"><h3>Query Parameters</h3><ul><li><strong>month.id</strong>: <em><span class="required">required</span>(number)</em><p>Month id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>month.month_name</strong>: <em><span class="required">required</span>(string)</em><p>Month naame</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>January</code></pre></div></li></ul></div><div class="tab-pane" id="months_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: month</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": [
+    {
+      "id": 1,
+      "month_name": "January"
+    },
+    {
+      "id": 2,
+      "month_name": "February"
+    },
+    {
+      "id": 3,
+      "month_name": "March"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="months_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/months</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#months_post_request" data-toggle="tab">Request</a></li><li><a href="#months_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="months_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>month.id</strong>: <em><span class="required">required</span>(number)</em><p>Month identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="months_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: month</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "status": 200,
+      "month_name": "The month has been created successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_months__month_id_"><span class="parent">/months</span>/{month-id}</a> <span class="methods"><a href="#months__month_id__get"><span class="badge badge_get">get</span></a> <a href="#months__month_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_months__month_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#months__month_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#months__month_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="months__month_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/months</span>/{month-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#months__month_id__get_request" data-toggle="tab">Request</a></li><li><a href="#months__month_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="months__month_id__get_request"><h3>URI Parameters</h3><ul><li><strong>month-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="months__month_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: month</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "month_name": "January"
+    }
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="months__month_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/months</span>/{month-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#months__month_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#months__month_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="months__month_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>month-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>month.id</strong>: <em><span class="required">required</span>(integer)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>month.month_name</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>January</code></pre></div></li></ul></div><div class="tab-pane" id="months__month_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "status": 200,
+      "response": "The month has been updated successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="non_work_day" class="panel-title">/non_work_day</h3></div><div class="panel-body"><div class="top-resource-description"><p>List of non-working days</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_non_work_day"><span class="parent"></span>/non_work_day</a> <span class="methods"><a href="#non_work_day_get"><span class="badge badge_get">get</span></a> <a href="#non_work_day_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_non_work_day" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#non_work_day_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of non-working days</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#non_work_day_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="non_work_day_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/non_work_day</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of non-working days</p></div><ul class="nav nav-tabs"><li class="active"><a href="#non_work_day_get_request" data-toggle="tab">Request</a></li><li><a href="#non_work_day_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="non_work_day_get_request"><h3>Query Parameters</h3><ul><li><strong>non_work_day.id</strong>: <em><span class="required">required</span>(number)</em><p>Non work day identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>non_work_day.day</strong>: <em><span class="required">required</span>(string)</em><p>Non work day</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>non_work_day.fk_month</strong>: <em><span class="required">required</span>(string)</em><p>Non-working day of the month</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>non_work_day.year</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="non_work_day_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: non_work_day</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": [
+    {
+      "id": 1,
+      "month_name": "January"
+    },
+    {
+      "id": 2,
+      "month_name": "February"
+    },
+    {
+      "id": 3,
+      "month_name": "March"
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="non_work_day_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/non_work_day</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#non_work_day_post_request" data-toggle="tab">Request</a></li><li><a href="#non_work_day_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="non_work_day_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>month.id</strong>: <em><span class="required">required</span>(number)</em><p>Month identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="non_work_day_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: non_work_day</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "status": 200,
+      "month_name": "The month has been created successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_non_work_day__non_work_day_id_"><span class="parent">/non_work_day</span>/{non-work-day-id}</a> <span class="methods"><a href="#non_work_day__non_work_day_id__get"><span class="badge badge_get">get</span></a> <a href="#non_work_day__non_work_day_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_non_work_day__non_work_day_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#non_work_day__non_work_day_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#non_work_day__non_work_day_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="non_work_day__non_work_day_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/non_work_day</span>/{non-work-day-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#non_work_day__non_work_day_id__get_request" data-toggle="tab">Request</a></li><li><a href="#non_work_day__non_work_day_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="non_work_day__non_work_day_id__get_request"><h3>URI Parameters</h3><ul><li><strong>non-work-day-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="non_work_day__non_work_day_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: non_work_day</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "day": 1,
+      "month": 1,
+      "year": 2019
+    }
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="non_work_day__non_work_day_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/non_work_day</span>/{non-work-day-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#non_work_day__non_work_day_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#non_work_day__non_work_day_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="non_work_day__non_work_day_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>non-work-day-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>non_work_day.id</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>non_work_day.day</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>non_work_day.fk_month</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>non_work_day.year</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="non_work_day__non_work_day_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "status": 200,
+      "response": "Successful non-work day has been updated"
+    }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="projects" class="panel-title">/projects</h3></div><div class="panel-body"><div class="top-resource-description"><p>List of projects</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_projects"><span class="parent"></span>/projects</a> <span class="methods"><a href="#projects_get"><span class="badge badge_get">get</span></a> <a href="#projects_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_projects" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#projects_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>List of projects</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#projects_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="projects_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/projects</h4></div><div class="modal-body"><div class="alert alert-info"><p>List of projects</p></div><ul class="nav nav-tabs"><li class="active"><a href="#projects_get_request" data-toggle="tab">Request</a></li><li><a href="#projects_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="projects_get_request"><h3>Query Parameters</h3><ul><li><strong>project.id</strong>: <em><span class="required">required</span>(number)</em><p>List of projects</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>project.project_name</strong>: <em><span class="required">required</span>(string)</em><p>Project&#39;s name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>project.fk_account</strong>: <em><span class="required">required</span>(string)</em><p>Account related to the project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>projects.fk_pm</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="projects_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": [
+    {
+      "id_project": "KE000001",
+      "project_name": "Project Name",
+      "fk_account": "Account",
+      "fk_pm": 4
+    },
+    {
+      "id_project": "KE000002",
+      "project_name": "Project Name",
+      "fk_account": "Account",
+      "fk_pm": 3
+    },
+    {
+      "id_project": "KE000003",
+      "project_name": "Project Name",
+      "fk_account": "Account",
+      "fk_pm": 2
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="projects_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/projects</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#projects_post_request" data-toggle="tab">Request</a></li><li><a href="#projects_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="projects_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>month.id</strong>: <em><span class="required">required</span>(number)</em><p>Month identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="projects_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: non_work_day</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "Response": "The project has been created successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_projects__projects_id_"><span class="parent">/projects</span>/{projects-id}</a> <span class="methods"><a href="#projects__projects_id__get"><span class="badge badge_get">get</span></a> <a href="#projects__projects_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_projects__projects_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#projects__projects_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#projects__projects_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="projects__projects_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/projects</span>/{projects-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#projects__projects_id__get_request" data-toggle="tab">Request</a></li><li><a href="#projects__projects_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="projects__projects_id__get_request"><h3>URI Parameters</h3><ul><li><strong>projects-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="projects__projects_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id_project": "KE000001",
+      "project_name": "Project Name",
+      "fk_account": "Account",
+      "fk_pm": 1
+    }
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="projects__projects_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/projects</span>/{projects-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#projects__projects_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#projects__projects_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="projects__projects_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>projects-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>project.id</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>KKE000001</code></pre></div></li><li><strong>project.project_name</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>Project name</code></pre></div></li><li><strong>project.fk_account</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>Account</code></pre></div></li><li><strong>project.fk_pm</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="projects__projects_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id_project": "KE000001",
+      "status": 200,
+      "response": "The project has been updated successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="resources_hours" class="panel-title">/resources_hours</h3></div><div class="panel-body"><div class="top-resource-description"><p>Resource Hours</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resources_hours"><span class="parent"></span>/resources_hours</a> <span class="methods"><a href="#resources_hours_get"><span class="badge badge_get">get</span></a> <a href="#resources_hours_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_resources_hours" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resources_hours_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>Resource Hours List</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resources_hours_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resources_hours_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/resources_hours</h4></div><div class="modal-body"><div class="alert alert-info"><p>Resource Hours List</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resources_hours_get_request" data-toggle="tab">Request</a></li><li><a href="#resources_hours_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resources_hours_get_request"><h3>Query Parameters</h3><ul><li><strong>resource_hours.id</strong>: <em><span class="required">required</span>(number)</em><p>Resource hours identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.week</strong>: <em><span class="required">required</span>(string)</em><p>Resource hours per week</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.hours</strong>: <em><span class="required">required</span>(string)</em><p>Resource Hours</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_state</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_month</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_day</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_attemp</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_resource</strong>: <em><span class="required">required</span>(string)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="resources_hours_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": [
+    {
+      "id": 1,
+      "week": 1,
+      "hours": 8.0,
+      "fk_state": 1,
+      "fk_month": 1,
+      "fk_attemp": 1,
+      "fk_resource": 123456
+    },
+    {
+      "id": 2,
+      "week": 1,
+      "hours": 8.0,
+      "fk_state": 1,
+      "fk_month": 1,
+      "fk_attemp": 2,
+      "fk_resource": 789123
+    },
+    {
+      "id": 3,
+      "week": 1,
+      "hours": 8.0,
+      "fk_state": 1,
+      "fk_month": 1,
+      "fk_attemp": 3,
+      "fk_resource": 456789
+    }
+  ]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resources_hours_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/resources_hours</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resources_hours_post_request" data-toggle="tab">Request</a></li><li><a href="#resources_hours_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resources_hours_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>resource_hours.id</strong>: <em><span class="required">required</span>(number)</em><p>Resource hours identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li></ul></div><div class="tab-pane" id="resources_hours_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_hours</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "status": 200,
+      "Response": "Resource hours have been created successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resources_hours__resources_hours_id_"><span class="parent">/resources_hours</span>/{resources_hours-id}</a> <span class="methods"><a href="#resources_hours__resources_hours_id__get"><span class="badge badge_get">get</span></a> <a href="#resources_hours__resources_hours_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_resources_hours__resources_hours_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resources_hours__resources_hours_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resources_hours__resources_hours_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resources_hours__resources_hours_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/resources_hours</span>/{resources_hours-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resources_hours__resources_hours_id__get_request" data-toggle="tab">Request</a></li><li><a href="#resources_hours__resources_hours_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resources_hours__resources_hours_id__get_request"><h3>URI Parameters</h3><ul><li><strong>resources_hours-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="resources_hours__resources_hours_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_hours</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "week": 1,
+      "hours": 8.0,
+      "fk_state": 1,
+      "fk_month": 1,
+      "fk_attemp": 1,
+      "fk_resource": 123456
+    }
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resources_hours__resources_hours_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/resources_hours</span>/{resources_hours-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resources_hours__resources_hours_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#resources_hours__resources_hours_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resources_hours__resources_hours_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>resources_hours-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>resource_hours.id</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.week</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.hours</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>8</code></pre></div></li><li><strong>resource_hours.fk_state</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_month</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_attemp</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_hours.fk_resource</strong>: <em><span class="required">required</span>(number)</em><p><strong>Example</strong>:</p><div class="examples"><pre><code>123456</code></pre></div></li></ul></div><div class="tab-pane" id="resources_hours__resources_hours_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "status": 200,
+      "response": "Resource hours have been updated successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="resource" class="panel-title">/resource</h3></div><div class="panel-body"><div class="top-resource-description"><p>resource list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource"><span class="parent"></span>/resource</a> <span class="methods"><a href="#resource_get"><span class="badge badge_get">get</span></a> <a href="#resource_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_resource" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>resource lists</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/resource</h4></div><div class="modal-body"><div class="alert alert-info"><p>resource lists</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resource_get_request" data-toggle="tab">Request</a></li><li><a href="#resource_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_get_request"><h3>Query Parameters</h3><ul><li><strong>resource.id</strong>: <em>(number)</em><p>resource id</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource.name</strong>: <em>(string)</em><p>resource name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>ANTONIO</code></pre></div></li><li><strong>resource.last_name</strong>: <em>(string)</em><p>resource last name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>ANZURES</code></pre></div></li><li><strong>resource.second_last_name</strong>: <em>(string)</em><p>resource second last name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>MONTECILLO</code></pre></div></li><li><strong>resource.fkResourceStatus</strong>: <em><span class="required">required</span>(number)</em><p>resource status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource.letters_gft</strong>: <em>(string)</em><p>resource letter identifier</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>JOAZ</code></pre></div></li><li><strong>resource.starting_date</strong>: <em>(string)</em><p>resource date incomming work</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2019-10-10</code></pre></div></li><li><strong>resource.end_date</strong>: <em>(string)</em><p>resource date work out</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2023-10-10</code></pre></div></li><li><strong>resource.comentary</strong>: <em>(string)</em><p>identify the text referring to a resource</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>PRUEBA DE COMENTARIO</code></pre></div></li></ul></div><div class="tab-pane" id="resource_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resources</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": [
+		{
+			"id": 800216, 
+			"name": "JOSE ANTONIO", 
+			"last_name": "ANZURES", 
+			"second_last_name": "MONTECILLO", 
+			"fkResourceStatus": 1, 
+			"letters_gft": "JOAZ", 
+			"starting_date": "2019-04-29", 
+			"end_date": "", 
+			"comentary": ""
+		},
+		{
+			"id": 720397, 
+			"name": "ENRIQUE", 
+			"last_name": "LOPEZ", 
+			"second_last_name": "CALLEJAS", 
+			"fkResourceStatus": 1, 
+			"letters_gft": "ENLC", 
+			"starting_date": "", 
+			"end_date": "", 
+			"comentary": ""
+		},
+		{
+			"id": 800623, 
+			"name": "CRISTIAN", 
+			"last_name": "MARTINEZ", 
+			"second_last_name": "HERNANDEZ", 
+			"fkResourceStatus": 1, 
+			"letters_gft": "CNMD", 
+			"starting_date": "", 
+			"end_date": "", 
+			"comentary": ""
+		},
+		{
+			"id": 800214, 
+			"name": "IDZINIL EUNICE", 
+			"last_name": "PINO", 
+			"second_last_name": "PEREZ", 
+			"fkResourceStatus": 1, 
+			"letters_gft": "IEPZ", 
+			"starting_date": "2019-04-29", 
+			"end_date": "", 
+			"comentary": ""
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/resource</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_post_request" data-toggle="tab">Request</a></li><li><a href="#resource_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Media type</strong>: resource.name</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>ANTONIO</code></pre></div><p><strong>Media type</strong>: resource.last_name</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>ANZURES</code></pre></div><p><strong>Media type</strong>: resource.second_last_name</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>MONTECILLO</code></pre></div><p><strong>Media type</strong>: resource.fkResourceStatus</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div><p><strong>Media type</strong>: resource.letters_gft</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>JOAZ</code></pre></div><p><strong>Media type</strong>: resource.starting_date</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2019-10-10</code></pre></div><p><strong>Media type</strong>: resource.end_date</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2023-10-10</code></pre></div><p><strong>Media type</strong>: resource.comentary</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>PRUEBA DE COMENTARIO</code></pre></div></div><div class="tab-pane" id="resource_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data":
+		{
+            "message": "The resource has been successfully registered"
+		}
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource__resource_id_"><span class="parent">/resource</span>/{resource-id}</a> <span class="methods"><a href="#resource__resource_id__get"><span class="badge badge_get">get</span></a> <a href="#resource__resource_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_resource__resource_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource__resource_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource__resource_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource__resource_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/resource</span>/{resource-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource__resource_id__get_request" data-toggle="tab">Request</a></li><li><a href="#resource__resource_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource__resource_id__get_request"><h3>URI Parameters</h3><ul><li><strong>resource-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="resource__resource_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+			"id": 800216, 
+			"name": "JOSE ANTONIO", 
+			"last_name": "ANZURES", 
+			"second_last_name": "MONTECILLO", 
+			"fkResourceStatus": 1, 
+			"letters_gft": "JOAZ", 
+			"starting_date": "2019-04-29", 
+			"end_date": "", 
+			"comentary": ""
+		}
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource__resource_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/resource</span>/{resource-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource__resource_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#resource__resource_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource__resource_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>resource-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>resource.name</strong>: <em><span class="required">required</span>(string)</em></li></ul><p><strong>Media type</strong>: type</p><p><strong>Type</strong>: string</p><p><strong>Media type</strong>: required</p><p><strong>Type</strong>: any</p><p><strong>Media type</strong>: example</p><p><strong>Type</strong>: ANTONIO</p></div><div class="tab-pane" id="resource__resource_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+            "message": "The resource has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="kimble_status" class="panel-title">/kimble_status</h3></div><div class="panel-body"><div class="top-resource-description"><p>kimble status list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_kimble_status"><span class="parent"></span>/kimble_status</a> <span class="methods"><a href="#kimble_status_get"><span class="badge badge_get">get</span></a> <a href="#kimble_status_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_kimble_status" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#kimble_status_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>kimble_status lists</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#kimble_status_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="kimble_status_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/kimble_status</h4></div><div class="modal-body"><div class="alert alert-info"><p>kimble_status lists</p></div><ul class="nav nav-tabs"><li class="active"><a href="#kimble_status_get_request" data-toggle="tab">Request</a></li><li><a href="#kimble_status_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="kimble_status_get_request"><h3>Query Parameters</h3><ul><li><strong>kimble_status.id</strong>: <em>(number)</em><p>identify of the kimble_status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>kimble_status.status_name</strong>: <em><span class="required">required</span>(string)</em><p>identify the name of the status kimble</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Approved</code></pre></div></li></ul></div><div class="tab-pane" id="kimble_status_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resources</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": [
+		{
+			"id": 1, 
+			"status_name": "Approved"
+		},
+		{
+			"id": 2, 
+			"status_name": "Draft"
+		},
+		{
+			"id": 3, 
+			"status_name": "ReadyforApproval"
+		},
+		{
+			"id": 4, 
+			"status_name": "Rejected"
+		},
+		{
+			"id": 5, 
+			"status_name": "Absence"
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="kimble_status_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/kimble_status</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#kimble_status_post_request" data-toggle="tab">Request</a></li><li><a href="#kimble_status_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="kimble_status_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Media type</strong>: kimble_status.id</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div><p><strong>Media type</strong>: kimble_status.status_name</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Approved</code></pre></div></div><div class="tab-pane" id="kimble_status_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: kimble_status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "response": "Attempt status updated with success"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_kimble_status__kimble_status_id_"><span class="parent">/kimble_status</span>/{kimble_status-id}</a> <span class="methods"><a href="#kimble_status__kimble_status_id__get"><span class="badge badge_get">get</span></a> <a href="#kimble_status__kimble_status_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_kimble_status__kimble_status_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#kimble_status__kimble_status_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#kimble_status__kimble_status_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="kimble_status__kimble_status_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/kimble_status</span>/{kimble_status-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#kimble_status__kimble_status_id__get_request" data-toggle="tab">Request</a></li><li><a href="#kimble_status__kimble_status_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="kimble_status__kimble_status_id__get_request"><h3>URI Parameters</h3><ul><li><strong>kimble_status-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="kimble_status__kimble_status_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: kimble_status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+			"id": 1, 
+			"status_name": "Approved"
+		}
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="kimble_status__kimble_status_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/kimble_status</span>/{kimble_status-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#kimble_status__kimble_status_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#kimble_status__kimble_status_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="kimble_status__kimble_status_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>kimble_status-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>type</strong>: <em><span class="required">required</span>(number)</em></li></ul><p><strong>Media type</strong>: required</p><p><strong>Type</strong>: any</p><p><strong>Media type</strong>: example</p><p><strong>Type</strong>: any</p></div><div class="tab-pane" id="kimble_status__kimble_status_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+            "message": "The kimble status has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="resource_status" class="panel-title">/resource_status</h3></div><div class="panel-body"><div class="top-resource-description"><p>resource status list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource_status"><span class="parent"></span>/resource_status</a> <span class="methods"><a href="#resource_status_get"><span class="badge badge_get">get</span></a> <a href="#resource_status_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_resource_status" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_status_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>resource status lists</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_status_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_status_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/resource_status</h4></div><div class="modal-body"><div class="alert alert-info"><p>resource status lists</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resource_status_get_request" data-toggle="tab">Request</a></li><li><a href="#resource_status_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_status_get_request"><h3>Query Parameters</h3><ul><li><strong>resource_status.id</strong>: <em>(number)</em><p>identify of the resource_status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_status.status_name</strong>: <em><span class="required">required</span>(string)</em><p>identify the name of the resource status kimble</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Active</code></pre></div></li></ul></div><div class="tab-pane" id="resource_status_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resources</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": [
+		{
+			"id": 1, 
+			"status_name": "Active"
+		},
+		{
+			"id": 2, 
+			"status_name": "Inactive"
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_status_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/resource_status</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_status_post_request" data-toggle="tab">Request</a></li><li><a href="#resource_status_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_status_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Media type</strong>: resource_status.id</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div><p><strong>Media type</strong>: resource_status.status_name</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Active</code></pre></div></div><div class="tab-pane" id="resource_status_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "response": "Resource Status was created with success"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource_status__resource_status_id_"><span class="parent">/resource_status</span>/{resource_status-id}</a> <span class="methods"><a href="#resource_status__resource_status_id__get"><span class="badge badge_get">get</span></a> <a href="#resource_status__resource_status_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_resource_status__resource_status_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_status__resource_status_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_status__resource_status_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_status__resource_status_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/resource_status</span>/{resource_status-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_status__resource_status_id__get_request" data-toggle="tab">Request</a></li><li><a href="#resource_status__resource_status_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_status__resource_status_id__get_request"><h3>URI Parameters</h3><ul><li><strong>resource_status-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="resource_status__resource_status_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_status</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+			"id": 1, 
+			"status_name": "Active"
+		}
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_status__resource_status_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/resource_status</span>/{resource_status-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_status__resource_status_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#resource_status__resource_status_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_status__resource_status_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>resource_status-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><strong>Properties</strong><ul><li><strong>type</strong>: <em><span class="required">required</span>(number)</em></li></ul><p><strong>Media type</strong>: required</p><p><strong>Type</strong>: any</p><p><strong>Media type</strong>: example</p><p><strong>Type</strong>: any</p></div><div class="tab-pane" id="resource_status__resource_status_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+            "message": "The status resource has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="attempt" class="panel-title">/attempt</h3></div><div class="panel-body"><div class="top-resource-description"><p>resource status list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_attempt"><span class="parent"></span>/attempt</a> <span class="methods"><a href="#attempt_get"><span class="badge badge_get">get</span></a> <a href="#attempt_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_attempt" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#attempt_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>resource status lists</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#attempt_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="attempt_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/attempt</h4></div><div class="modal-body"><div class="alert alert-info"><p>resource status lists</p></div><ul class="nav nav-tabs"><li class="active"><a href="#attempt_get_request" data-toggle="tab">Request</a></li><li><a href="#attempt_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="attempt_get_request"><h3>Query Parameters</h3><ul><li><strong>attempt.id</strong>: <em>(number)</em><p>identify of the attempt</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>attempt.crated_date</strong>: <em><span class="required">required</span>(string)</em><p>identify the date of the attempt</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2010-10-10T11:11:11</code></pre></div></li><li><strong>attempt.attempt_name</strong>: <em><span class="required">required</span>(string)</em><p>identify the attempt name</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Active</code></pre></div></li><li><strong>attempt.consecutive</strong>: <em><span class="required">required</span>(number)</em><p>identify the number consecutive of the attempt</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20</code></pre></div></li></ul></div><div class="tab-pane" id="attempt_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resources</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		[{
+			"id": 1, 
+			"crated_date": "2019-11-01", 
+			"attemp_name": "consecutivo de noviembre", 
+			"attemp_date": "2019-11-01", 
+			"consecutive": 10
+		},
+		{
+			"id": 2, 
+			"crated_date": "2019-11-01", 
+			"attemp_name": "consecutivo de noviembre dos", 
+			"attemp_date": "2019-11-01T10:00:00", 
+			"consecutive": 10
+		},
+		{
+			"id": 3, 
+			"crated_date": "2019-11-01", 
+			"attemp_name": "consecutivo de noviembre tres", 
+			"attemp_date": "2019-11-01T11:00:00", 
+			"consecutive": 10
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="attempt_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/attempt</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#attempt_post_request" data-toggle="tab">Request</a></li><li><a href="#attempt_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="attempt_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Media type</strong>: attempt.crated_date</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2010-10-10T11:11:11</code></pre></div><p><strong>Media type</strong>: attempt.attempt_name</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>Active</code></pre></div><p><strong>Media type</strong>: attempt.consecutive</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>20</code></pre></div></div><div class="tab-pane" id="attempt_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: attempt</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "response": "Attempt updated with success"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_attempt__attempt_id_"><span class="parent">/attempt</span>/{attempt-id}</a> <span class="methods"><a href="#attempt__attempt_id__get"><span class="badge badge_get">get</span></a> <a href="#attempt__attempt_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_attempt__attempt_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#attempt__attempt_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#attempt__attempt_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="attempt__attempt_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/attempt</span>/{attempt-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#attempt__attempt_id__get_request" data-toggle="tab">Request</a></li><li><a href="#attempt__attempt_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="attempt__attempt_id__get_request"><h3>URI Parameters</h3><ul><li><strong>attempt-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="attempt__attempt_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: attempt</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+			"id": 1, 
+			"crated_date": "2019-11-01", 
+			"attemp_name": "consecutivo de noviembre", 
+			"attemp_date": "2019-11-01", 
+			"consecutive": 10
+		}
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="attempt__attempt_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/attempt</span>/{attempt-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#attempt__attempt_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#attempt__attempt_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="attempt__attempt_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>attempt-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p></div><div class="tab-pane" id="attempt__attempt_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+            "message": "The attemp has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="resource_project_hours" class="panel-title">/resource_project_hours</h3></div><div class="panel-body"><div class="top-resource-description"><p>relation between resources projects and hours list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource_project_hours"><span class="parent"></span>/resource_project_hours</a> <span class="methods"><a href="#resource_project_hours_get"><span class="badge badge_get">get</span></a> <a href="#resource_project_hours_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_resource_project_hours" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_project_hours_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>relation between resources projects and hours list</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_project_hours_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project_hours_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/resource_project_hours</h4></div><div class="modal-body"><div class="alert alert-info"><p>relation between resources projects and hours list</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resource_project_hours_get_request" data-toggle="tab">Request</a></li><li><a href="#resource_project_hours_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project_hours_get_request"><h3>Query Parameters</h3><ul><li><strong>resource_project_hours.id</strong>: <em>(number)</em><p>identify of the relation resource_project_hours</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_project_hours.fk_hours_resource</strong>: <em>(number)</em><p>identify the foreign key of the element hours resource</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>134</code></pre></div></li><li><strong>resource_project_hours.fk_resource_project</strong>: <em>(number)</em><p>identify the foreign key of the relation resource proyect</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>203</code></pre></div></li></ul></div><div class="tab-pane" id="resource_project_hours_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resources</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		[{
+			"id": 800216, 
+			"fk_hours_resource": 121, 
+			"fk_resource_projet": 123124
+		},
+		{
+			"id": 800217, 
+			"fk_hours_resource": 122, 
+			"fk_resource_projet": 123125
+		},
+		{
+			"id": 800218, 
+			"fk_hours_resource": 123, 
+			"fk_resource_projet": 123126
+		}]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project_hours_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/resource_project_hours</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_project_hours_post_request" data-toggle="tab">Request</a></li><li><a href="#resource_project_hours_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project_hours_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Media type</strong>: resource_project_hours.id</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div><p><strong>Media type</strong>: resource_project_hours.fk_hours_resource</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>203</code></pre></div><p><strong>Media type</strong>: resource_project_hours.fk_resource_project</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>213</code></pre></div></div><div class="tab-pane" id="resource_project_hours_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_project_hours</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+  "data": 
+    {
+      "id": 1,
+      "Response": "The relattion Resource Proyect Hour has been created successfully"
+    }
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource_project_hours__resource_project_hours_id_"><span class="parent">/resource_project_hours</span>/{resource_project_hours-id}</a> <span class="methods"><a href="#resource_project_hours__resource_project_hours_id__get"><span class="badge badge_get">get</span></a> <a href="#resource_project_hours__resource_project_hours_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_resource_project_hours__resource_project_hours_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_project_hours__resource_project_hours_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_project_hours__resource_project_hours_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project_hours__resource_project_hours_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/resource_project_hours</span>/{resource_project_hours-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_project_hours__resource_project_hours_id__get_request" data-toggle="tab">Request</a></li><li><a href="#resource_project_hours__resource_project_hours_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project_hours__resource_project_hours_id__get_request"><h3>URI Parameters</h3><ul><li><strong>resource_project_hours-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="resource_project_hours__resource_project_hours_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_project_hours</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+			"id": 800216, 
+			"fk_hours_resource": 121, 
+			"fk_resource_projet": 123124
+		}
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project_hours__resource_project_hours_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/resource_project_hours</span>/{resource_project_hours-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_project_hours__resource_project_hours_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#resource_project_hours__resource_project_hours_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project_hours__resource_project_hours_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>resource_project_hours-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p></div><div class="tab-pane" id="resource_project_hours__resource_project_hours_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+            "message": "The relation resource project hour has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="resource_project" class="panel-title">/resource_project</h3></div><div class="panel-body"><div class="top-resource-description"><p>relation between resources and projects list</p></div><div class="panel-group"><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource_project"><span class="parent"></span>/resource_project</a> <span class="methods"><a href="#resource_project_get"><span class="badge badge_get">get</span></a> <a href="#resource_project_post"><span class="badge badge_post">post</span></a></span></h4></div><div id="panel_resource_project" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_project_get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"><p>relation between resources and projects list</p></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_project_post'" class="list-group-item"><span class="badge badge_post">post</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project_get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent"></span>/resource_project</h4></div><div class="modal-body"><div class="alert alert-info"><p>relation between resources and projects list</p></div><ul class="nav nav-tabs"><li class="active"><a href="#resource_project_get_request" data-toggle="tab">Request</a></li><li><a href="#resource_project_get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project_get_request"><h3>Query Parameters</h3><ul><li><strong>resource_project.id</strong>: <em>(number)</em><p>identify of the relation resources and project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div></li><li><strong>resource_project.fk_resource</strong>: <em>(number)</em><p>identify the foreign key of the element hours resource</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>134</code></pre></div></li><li><strong>resource_project.fk_project</strong>: <em>(number)</em><p>identify the foreign key of the relation resource proyect</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>203</code></pre></div></li><li><strong>resource_project.status</strong>: <em><span class="required">required</span>(string)</em><p>identify the status of the relation between resources and projects</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>203</code></pre></div></li><li><strong>resource_project.starting_date</strong>: <em><span class="required">required</span>(string)</em><p>identify the admission date of relation between resources and projects</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2018-12-10</code></pre></div></li><li><strong>resource_project.end_date</strong>: <em><span class="required">required</span>(string)</em><p>identify the last date of the relation between resources and projects</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2019-10-10</code></pre></div></li></ul></div><div class="tab-pane" id="resource_project_get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": [
+		{
+			"id": 800216, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-29", 
+			"end_date": "2019-07-29"
+		},
+		{
+			"id": 800217, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-20", 
+			"end_date": "2019-12-29"
+		},
+		{
+			"id": 800218, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2018-02-29", 
+			"end_date": "2019-06-29"
+		},
+		{
+			"id": 800219, 
+			"fk_resorce": 313, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-29", 
+			"end_date": "2019-10-29"
+		}
+	]
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project_post"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_post">post</span> <span class="parent"></span>/resource_project</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_project_post_request" data-toggle="tab">Request</a></li><li><a href="#resource_project_post_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project_post_request"><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p><p><strong>Media type</strong>: resource_project.fk_resource</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>720079</code></pre></div><p><strong>Media type</strong>: resource_project.fk_project</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>KE013300</code></pre></div><p><strong>Media type</strong>: resource_project.status</p><p><strong>Type</strong>: number</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>1</code></pre></div><p><strong>Media type</strong>: resource_project.starting_date</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2019-02-29</code></pre></div><p><strong>Media type</strong>: resource_project.end_date</p><p><strong>Type</strong>: string</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>2019-02-29</code></pre></div></div><div class="tab-pane" id="resource_project_post_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data":
+		{
+		"id": 1,
+            "message": "The relation resource and project has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div><div class="panel panel-white resource-modal"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel_resource_project__resource_project_id_"><span class="parent">/resource_project</span>/{resource_project-id}</a> <span class="methods"><a href="#resource_project__resource_project_id__get"><span class="badge badge_get">get</span></a> <a href="#resource_project__resource_project_id__patch"><span class="badge badge_patch">patch</span></a></span></h4></div><div id="panel_resource_project__resource_project_id_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div onclick="window.location.href = '#resource_project__resource_project_id__get'" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div><div onclick="window.location.href = '#resource_project__resource_project_id__patch'" class="list-group-item"><span class="badge badge_patch">patch</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project__resource_project_id__get"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/resource_project</span>/{resource_project-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_project__resource_project_id__get_request" data-toggle="tab">Request</a></li><li><a href="#resource_project__resource_project_id__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project__resource_project_id__get_request"><h3>URI Parameters</h3><ul><li><strong>resource_project-id</strong>: <em><span class="required">required</span>(string)</em></li></ul></div><div class="tab-pane" id="resource_project__resource_project_id__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: resource_project</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+			"id": 800217, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-20", 
+			"end_date": "2019-12-29"
+		}
+}</code></pre></div></div></div></div></div></div></div><div class="modal fade" tabindex="0" id="resource_project__resource_project_id__patch"><div class="modal-dialog modal-lg"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_patch">patch</span> <span class="parent">/resource_project</span>/{resource_project-id}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#resource_project__resource_project_id__patch_request" data-toggle="tab">Request</a></li><li><a href="#resource_project__resource_project_id__patch_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="resource_project__resource_project_id__patch_request"><h3>URI Parameters</h3><ul><li><strong>resource_project-id</strong>: <em><span class="required">required</span>(string)</em></li></ul><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: object</p></div><div class="tab-pane" id="resource_project__resource_project_id__patch_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Media type</strong>: application/json</p><p><strong>Type</strong>: any</p><p><strong>Example</strong>:</p><div class="examples"><pre><code>{
+	"data": 
+		{
+            "message": "The relation resource and project has been successfully updated"
+		}
+}</code></pre></div></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#accounts">/accounts</a></li><li><a href="#cost_families">/cost_families</a></li><li><a href="#months">/months</a></li><li><a href="#non_work_day">/non_work_day</a></li><li><a href="#projects">/projects</a></li><li><a href="#resources_hours">/resources_hours</a></li><li><a href="#resource">/resource</a></li><li><a href="#kimble_status">/kimble_status</a></li><li><a href="#resource_status">/resource_status</a></li><li><a href="#attempt">/attempt</a></li><li><a href="#resource_project_hours">/resource_project_hours</a></li><li><a href="#resource_project">/resource_project</a></li></ul></div></div></div></div></body></html>

@@ -11,12 +11,6 @@ uses:
   attempt: types/attempt.raml
   resource_status: types/resource_status.raml
   resource_project_hours: types/resource_project_hours.raml
-  account:  types/account.raml
-  cost_family:  types/cost_family.raml
-  month:  types/month.raml
-  non_work_day:  types/non_work_day.raml
-  project:  types/project.raml
-  resource_hours:  types/resource_hours.raml
   pagination: glapi-global-apis-commons-commons/types/pagination.raml
 
 resourceTypes: 
@@ -24,556 +18,7 @@ resourceTypes:
 
 traits: 
   pageable: !include glapi-global-apis-commons-commons/traits/pageable.raml
-#inicio jncy
-/accounts:
-  description: |
-    Accounts
-  type: collection
-  get:
-    is: [pageable]
-    description: |
-      accounts list
-    queryParameters:
-      account.id:
-        description: |
-          Account id
-        type: string
-        required: true
-        example: "2"
-      account.account_name:
-        description: |
-          Account namee
-        type: string
-        required: true
-        example: "Banco 1"
-      account.fk_family:
-        description: |
-          Family to which the account belongs
-        type: number
-        required: true
-        example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: account
-            example: !include examples/accounts/get_200.json
-  post:
-    body:
-      application/json:
-        properties:
-          account.id:
-            description: |
-              Account id
-            type: string
-            required: true
-            example: "2"
-          account.account_name:
-            description: |
-              Account name
-            type: string
-            required: true
-            example: "Banco 1"
-          account.fk_family:
-            description: |
-              Family to which the account belongs
-            type: number
-            required: true
-            example: 1
-    responses:
-        200:
-          body:
-            application/json:
-              type: account
-              example: !include examples/accounts/post_200.json
-  /{account-id}:
-    get:
-      uriParameters:
-        account-id:
-          type: string
-          description: Account identifier
-      responses:
-        200:
-          body:
-            application/json:
-              type: account
-              example: !include examples/accounts/account_id/get_200.json
-    patch:
-      body:
-        application/json:
-          properties:
-            account.id:
-              type: string
-              required: true
-              example: "1"
-            account.name:
-              type: number
-              required: true
-              example: "Banco 1"
-            account.fk_family:
-              type: string
-              required: true
-              example: 1
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/accounts/account_id/patch_200.json
 
-/cost_families:
-  description: |
-    Cost families
-  type: collection
-  get:
-    is: [ assets.paging ]
-    description: |
-      lists all cost faamilies
-    queryParameters:
-      cost_family.id:
-        description: |
-          Cost family id
-        type: number
-        required: true
-        example: 1
-      cost_family.cost_family:
-        description: |
-          Cost family
-        required: true
-        example: "Cost family"
-    responses:
-      200:
-        body:
-          application/json:
-            type: cost_family
-            example: !include examples/cost_families/get_200.json
-  post:
-    body:
-      application/json:
-        properties: 
-          cost_family.id:
-            description: |
-              Identifier of a cost family
-            type: number
-            required: true
-            example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: cost_family
-            example: !include examples/cost_families/post_200.json
-
-  /{cost_family-id}:
-    get:
-      uriParameters:
-        cost_family-id:
-          type: integer
-          description: Identifier of a cost family
-      responses:
-        200:
-          body:
-            application/json:
-              type: cost_family
-              example: !include examples/cost_families/cost_family_id/get_200.json
-
-    patch:
-      body:
-        application/json:
-          properties:
-            cost_family.id:
-              type: integer
-              required: true
-              example: 1
-            cost_family.cost_family:
-              type: string
-              required: true
-              example: "Banco 1"
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/cost_families/cost_family_id/patch_200.json
-
-/months:
-  description: |
-    Month list
-  type: collection
-  get:
-    is: [ assets.paging ]
-    description: |
-      Month list
-    queryParameters:
-      month.id:
-        description: |
-          Month id
-        type: number
-        required: true
-        example: 1
-      month.month_name:
-        description: |
-          Month naame
-        required: true
-        example: "January"
-    responses:
-      200:
-        body:
-          application/json:
-            type: month
-            example: !include examples/months/get_200.json
-  post:
-    body:
-      application/json:
-        properties: 
-          month.id:
-            description: |
-              Month identifier
-            type: number
-            required: true
-            example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: month
-            example: !include examples/months/post_200.json
-
-  /{month-id}:
-    get:
-      uriParameters:
-        month-id:
-          type: integer
-          description: Month identifier
-      responses:
-        200:
-          body:
-            application/json:
-              type: month
-              example: !include examples/months/month_id/get_200.json
-    patch:
-      body:
-        application/json:
-          properties:
-            month.id:
-              type: integer
-              required: true
-              example: 1
-            month.month_name:
-              type: string
-              required: true
-              example: "January"
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/months/month_id/patch_200.json
-
-/non_work_day:
-  description: |
-    List of non-working days
-  type: collection
-  get:
-    is: [ assets.paging ]
-    description: |
-      List of non-working days
-    queryParameters:
-      non_work_day.id:
-        description: |
-          Non work day identifier
-        type: number
-        required: true
-        example: 1
-      non_work_day.day:
-        description: |
-          Non work day
-        required: true
-        example: 1
-      non_work_day.fk_month:
-        description: |
-          Non-working day of the month
-        required: true
-        example: 1
-      non_work_day.year:
-        deescription: |
-          Non working days of the year
-    responses:
-      200:
-        body:
-          application/json:
-            type: non_work_day
-            example: !include examples/months/get_200.json
-  post:
-    body:
-      application/json:
-        properties: 
-          month.id:
-            description: |
-              Month identifier
-            type: number
-            required: true
-            example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: non_work_day
-            example: !include examples/months/post_200.json
-
-  /{non-work-day-id}:
-    get:
-      uriParameters:
-        non_work_day-id:
-          type: integer
-          description: Non work day identifier
-      responses:
-        200:
-          body:
-            application/json:
-              type: non_work_day
-              example: !include examples/non_work_days/non_work_day_id/get_200.json
-
-    patch:
-      body:
-        application/json:
-          properties:
-            non_work_day.id:
-              type: number
-              required: true
-              example: 1
-            non_work_day.day:
-              type: number
-              required: true
-              example: 1
-            non_work_day.fk_month:
-              type: number
-              required: true
-              example: 1
-            non_work_day.year:
-              type: number
-              required: true
-              example: 1
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/non_work_days/non_work_day_id/patch_200.json
-
-/projects:
-  description: |
-    List of projects
-  type: collection
-  get:
-    is: [ assets.paging ]
-    description: |
-      List of projects
-    queryParameters:
-      project.id:
-        description: |
-          List of projects
-        type: number
-        required: true
-        example: 1
-      project.project_name:
-        description: |
-          Project's name
-        required: true
-        example: 1
-      project.fk_account:
-        description: |
-          Account related to the project
-        required: true
-        example: 1
-      projects.fk_pm:
-        deescription: |
-          Project Management related to the project
-          required: true
-          example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: project
-            example: !include examples/projects/get_200.json
-  post:
-    body:
-      application/json:
-        properties: 
-          month.id:
-            description: |
-              Month identifier
-            type: number
-            required: true
-            example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: non_work_day
-            example: !include examples/projects/post_200.json
-
-  /{projects-id}:
-    get:
-      uriParameters:
-        project-id:
-          type: integer
-          description: Project Identifier
-      responses:
-        200:
-          body:
-            application/json:
-              type: project
-              example: !include examples/projects/project_id/get_200.json
-    patch:
-      body:
-        application/json:
-          properties:
-            project.id:
-              type: string
-              required: true
-              example: "KKE000001"
-            project.project_name:
-              type: string
-              required: true
-              example: "Project name"
-            project.fk_account:
-              type: string
-              required: true
-              example: "Account"
-            project.fk_pm:
-              type: number
-              required: true
-              example: 1
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/projects/project_id/patch_200.json
-
-/resources_hours:
-  description: |
-    Resource Hours
-  type: collection
-  get:
-    is: [ assets.paging ]
-    description: |
-      Resource Hours List
-    queryParameters:
-      resource_hours.id:
-        description: |
-          Resource hours identifier
-        type: number
-        required: true
-        example: 1
-      resource_hours.week:
-        description: |
-          Resource hours per week
-        required: true
-        example: 1
-      resource_hours.hours:
-        description: |
-          Resource Hours
-        required: true
-        example: 1
-      resource_hours.fk_state:
-        deescription: |
-          Relationship of the state with the hours of the resource
-        required: true
-        example: 1
-      resource_hours.fk_month:
-        deescription: |
-          Relation of the month with the hours of the resource
-        required: true
-        example: 1
-      resource_hours.fk_day:
-        deescription: |
-          Relationship of the day with the hours of the resource
-        required: true
-        example: 1
-      resource_hours.fk_attemp:
-        deescription: |
-          Relation of the attempt with the hours of the resource
-        required: true
-        example: 1
-      resource_hours.fk_resource:
-        deescription: |
-          Relation of the resource with the hours
-        required: true
-        example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: project
-            example: !include examples/resources_hours/get_200.json
-  post:
-    body:
-      application/json:
-        properties: 
-          resource_hours.id:
-            description: |
-              Resource hours identifier
-            type: number
-            required: true
-            example: 1
-    responses:
-      200:
-        body:
-          application/json:
-            type: resource_hours
-            example: !include examples/resources_hours/post_200.json
-
-  /{resources_hours-id}:
-    get:
-      uriParameters:
-        resource_hours-id:
-          type: integer
-          description: Resource hours identifier
-      responses:
-        200:
-          body:
-            application/json:
-              type: resource_hours
-              example: !include examples/resources_hours/resource_hours_id/get_200.json
-    patch:
-      body:
-        application/json:
-          properties:
-            resource_hours.id:
-              type: number
-              required: true
-              example: 1
-            resource_hours.week:
-              type: number
-              required: true
-              example: 1
-            resource_hours.hours:
-              type: number
-              required: true
-              example: 8.0
-            resource_hours.fk_state:
-              type: number
-              required: true
-              example: 1
-            resource_hours.fk_month:
-              type: number
-              required: true
-              example: 1
-            resource_hours.fk_attemp:
-              type: number
-              required: true
-              example: 1
-            resource_hours.fk_resource:
-              type: number
-              required: true
-              example: 123456
-      responses:
-        200:
-          body:
-            application/json:
-              example: !include examples/resources_hours/resource_hours_id/patch_200.json
-
-
-# fin jncy
-# inicio joaz
 /resource:
   description: |
     resource list
@@ -637,6 +82,7 @@ traits:
         type: string
         required: false
         example: "PRUEBA DE COMENTARIO"
+
     responses:
       200:
         body:
@@ -685,7 +131,7 @@ traits:
           body:
             application/json:
               type: resource
-              example: !include examples/resources/post_200.json
+              example: !include examples/resource/resource_id/post_200.json
   /{resource-id}:
     get:
       uriParameters:
@@ -699,7 +145,49 @@ traits:
           body:
             application/json:
               type: resource
-              example: !include examples/resources/resource_id/get_200.json
+              example: !include examples/resource/resource_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+          resource.name:
+        type: string
+        required: false
+        example: "ANTONIO"
+      resource.last_name:
+        type: string
+        required: false
+        example: "ANZURES"
+      resource.second_last_name:
+        type: string
+        required: false
+        example: "MONTECILLO"
+      resource.fkResourceStatus:
+        type: number
+        required: true
+        example: 1
+      resource.letters_gft:
+        type: string
+        required: false
+        example: "JOAZ"
+      resource.starting_date:
+        type: string
+        required: false
+        example: "2019-10-10"
+      resource.end_date:
+        type: string
+        required: false
+        example: "2023-10-10"
+      resource.comentary:
+        type: string
+        required: false
+        example: "PRUEBA DE COMENTARIO"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource/resource_id/put_200.json
     patch:
       body:
         application/json:
@@ -740,7 +228,7 @@ traits:
         200:
           body:
             application/json:
-              example: !include examples/resources/resource_id/patch_200.json
+              example: !include examples/resource/resource_id/patch_200.json
 
 /kimble_status:
   description: |
@@ -803,6 +291,23 @@ traits:
             application/json:
               type: kimble_status
               example: !include examples/kimble_status/kimble_status_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+        type: number
+        required: false
+        example: 1
+      kimble_status.status_name:
+        type: string
+        required: true
+        example: "Approved"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/kimble_status/kimble_status_id/put_200.json
     patch:
       body:
         application/json:
@@ -883,6 +388,23 @@ traits:
             application/json:
               type: resource_status
               example: !include examples/resource_status/resource_status_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+        type: number
+        required: false
+        example: 1
+      resource_status.status_name:
+        type: string
+        required: true
+        example: "Active"
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_status/resource_status_id/put_200.json
     patch:
       body:
         application/json:
@@ -978,6 +500,33 @@ traits:
             application/json:
               type: attempt
               example: !include examples/attempt/attempt_id/get_200.json
+    put:
+      body:
+        application/json:
+          properties:
+      
+      attempt-id:
+        type: number
+        required: false
+        example: 1
+      attempt.crated_date:
+        type: string
+        required: true
+        example: "2010-10-10T11:11:11"
+      attempt.attempt_name:
+        type: string
+        required: true
+        example: "Active"
+      attempt.consecutive:
+        type: number
+        required: true
+        example: 20
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/attempt/attempt_id/put_200.json
     patch:
       body:
         application/json:
@@ -1075,7 +624,29 @@ traits:
             application/json:
               type: resource_project_hours
               example: !include examples/resource_project_hours/resource_project_hours_id/get_200.json
-    
+    put:
+      body:
+        application/json:
+          properties:
+      
+      resource_project_hours.id:
+        type: number
+        required: false
+        example: 1
+      resource_project_hours.fk_hours_resource:
+        type: number
+        required: false
+        example: 253
+      resource_project_hours.fk_resource_project:
+        type: number
+        required: true
+        example: 204
+            
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_project_hours/resource_project_hours_id/put_200.json
     patch:
       body:
         application/json:
@@ -1193,7 +764,39 @@ traits:
             application/json:
               type: resource_project
               example: !include examples/resource_project/resource_project_id/get_200.json
-    
+    put:
+      body:
+        application/json:
+          properties:
+            resource_project.id:
+              type: number
+              required: false
+              example: 1
+            resource_project.fk_resource:
+              type: number
+              required: false
+              example: 720079
+            resource_project.fk_project:
+              type: string
+              required: false
+              example: "KE013300"
+            resource_project.status:
+              type: number
+              required: false
+              example: 1
+            resource_project.starting_date:
+              type: string
+              required: false
+              example: "2019-02-29"
+            resource_project.end_date:
+              type: string
+              required: false
+              example: "2019-02-29"
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/resource_project/resource_project_id/put_200.json
     patch:
       body:
         application/json:
@@ -1227,5 +830,3 @@ traits:
           body:
             application/json:
               example: !include examples/resource_project/resource_project_id/patch_200.json
-
-# fin joaz
