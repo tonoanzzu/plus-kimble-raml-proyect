@@ -573,9 +573,7 @@ traits:
 
 
 # fin jncy
-
 # inicio joaz
-
 /resource:
   description: |
     resource list
@@ -639,7 +637,6 @@ traits:
         type: string
         required: false
         example: "PRUEBA DE COMENTARIO"
-
     responses:
       200:
         body:
@@ -688,7 +685,7 @@ traits:
           body:
             application/json:
               type: resource
-              example: !include examples/resource/resource_id/post_200.json
+              example: !include examples/resources/post_200.json
   /{resource-id}:
     get:
       uriParameters:
@@ -702,7 +699,7 @@ traits:
           body:
             application/json:
               type: resource
-              example: !include examples/resource/resource_id/get_200.json
+              example: !include examples/resources/resource_id/get_200.json
     patch:
       body:
         application/json:
@@ -743,7 +740,7 @@ traits:
         200:
           body:
             application/json:
-              example: !include examples/resource/resource_id/patch_200.json
+              example: !include examples/resources/resource_id/patch_200.json
 
 /kimble_status:
   description: |
