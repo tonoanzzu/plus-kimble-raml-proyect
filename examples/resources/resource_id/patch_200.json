@@ -1,6 +1,8 @@
 {
 	"data": 
 		{
-            "message": "The resource has been successfully updated"
+            "id": 1,
+			"status": 200,
+			"response": "Resource updated with success"
 		}
 }
