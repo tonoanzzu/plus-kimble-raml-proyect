@@ -959,18 +959,22 @@ traits:
     body:
       application/json:
         properties:
-      attempt.crated_date:
-        type: string
-        required: true
-        example: "2010-10-10T11:11:11"
-      attempt.attempt_name:
-        type: string
-        required: true
-        example: "Active"
-      attempt.consecutive:
-        type: number
-        required: true
-        example: 20
+          attempt.crated_date:
+            type: string
+            required: true
+            example: "2010-10-10T11:11:11"
+          attempt.attempt_name:
+            type: string
+            required: true
+            example: "Active"
+          attempt.attempt_date:
+            type: string
+            required: true
+            example: "2010-10-10T11:11:11"
+          attempt.consecutive:
+            type: number
+            required: true
+            example: 20
     responses:
         200:
           body:
@@ -995,22 +999,22 @@ traits:
       body:
         application/json:
           properties:
-          attempt-id:
-            type: number
-            required: false
-            example: 1
-          attempt.crated_date:
-            type: string
-            required: true
-            example: "2010-10-10T11:11:11"
-          attempt.attempt_name:
-            type: string
-            required: true
-            example: "Active"
-          attempt.consecutive:
-            type: number
-            required: true
-            example: 20
+            attempt-id:
+              type: number
+              required: true
+              example: 1
+            attempt.crated_date:
+              type: string
+              required: true
+              example: "2010-10-10T11:11:11"
+            attempt.attempt_name:
+              type: string
+              required: true
+              example: "Active"
+            attempt.consecutive:
+              type: number
+              required: true
+              example: 20
       responses:
         200:
           body:
