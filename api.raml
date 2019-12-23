@@ -281,21 +281,23 @@ traits:
         description: |
           Non work day identifier
         type: number
-        required: true
+        required: false
         example: 1
       non_work_day.day:
         description: |
           Non work day
-        required: true
+        required: false
         example: 1
       non_work_day.fk_month:
         description: |
           Non-working day of the month
-        required: true
+        required: false
         example: 1
       non_work_day.year:
         deescription: |
           Non working days of the year
+        required: false
+        example: 2019
     responses:
       200:
         body:
@@ -371,23 +373,24 @@ traits:
         description: |
           List of projects
         type: number
-        required: true
+        required: false
         example: 1
       project.project_name:
         description: |
           Project's name
-        required: true
-        example: 1
+        required: false
+        type: string
+        example: "Project name 2"
       project.fk_account:
         description: |
           Account related to the project
-        required: true
+        required: false
         example: 1
       projects.fk_pm:
         deescription: |
           Project Management related to the project
-          required: true
-          example: 1
+        required: false
+        example: 1
     responses:
       200:
         body:
@@ -398,12 +401,21 @@ traits:
     body:
       application/json:
         properties: 
-          month.id:
+          project.project_name:
             description: |
-              Month identifier
-            type: number
-            required: true
-            example: 1
+              Project's name
+            required: false
+            example: "Project Name 2"
+          project.fk_account:
+            description: |
+              Account related to the project
+            required: false
+            example: 3
+          projects.fk_pm:
+            deescription: |
+              Project Management related to the project
+            required: false
+            example: 2
     responses:
       200:
         body:
@@ -462,42 +474,49 @@ traits:
         description: |
           Resource hours identifier
         type: number
-        required: true
+        required: false
         example: 1
       resource_hours.week:
         description: |
           Resource hours per week
-        required: true
+        type: number
+        required: false
         example: 1
       resource_hours.hours:
         description: |
           Resource Hours
-        required: true
+        type: number
+        required: false
         example: 1
       resource_hours.fk_state:
         deescription: |
           Relationship of the state with the hours of the resource
-        required: true
+        type: number
+        required: false
         example: 1
       resource_hours.fk_month:
         deescription: |
           Relation of the month with the hours of the resource
-        required: true
+        type: number
+        required: false
         example: 1
       resource_hours.fk_day:
         deescription: |
           Relationship of the day with the hours of the resource
-        required: true
+        type: number
+        required: false
         example: 1
       resource_hours.fk_attemp:
         deescription: |
           Relation of the attempt with the hours of the resource
-        required: true
+        type: number
+        required: false
         example: 1
       resource_hours.fk_resource:
         deescription: |
           Relation of the resource with the hours
-        required: true
+        type: number
+        required: false
         example: 1
     responses:
       200:
@@ -513,7 +532,49 @@ traits:
             description: |
               Resource hours identifier
             type: number
-            required: true
+            required: false
+            example: 1
+          resource_hours.week:
+            description: |
+              Resource hours per week
+            type: number
+            required: false
+            example: 1
+          resource_hours.hours:
+            description: |
+              Resource Hours
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_state:
+            deescription: |
+              Relationship of the state with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_month:
+            deescription: |
+              Relation of the month with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_day:
+            deescription: |
+              Relationship of the day with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_attemp:
+            deescription: |
+              Relation of the attempt with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_resource:
+            deescription: |
+              Relation of the resource with the hours
+            type: number
+            required: false
             example: 1
     responses:
       200:
@@ -612,7 +673,7 @@ traits:
         description: |
           resource status
         type: number
-        required: true
+        required: false
         example: 1
       resource.letters_gft:
         description: |
@@ -771,7 +832,7 @@ traits:
         description: |
           identify the name of the status kimble
         type: string
-        required: true
+        required: false
         example: "Approved"
       
     responses:
@@ -855,7 +916,7 @@ traits:
         description: |
           identify the name of the resource status kimble
         type: string
-        required: true
+        required: false
         example: "Active"
       
     responses:
