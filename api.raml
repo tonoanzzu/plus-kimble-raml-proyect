@@ -379,7 +379,8 @@ traits:
         description: |
           Project's name
         required: false
-        example: 1
+        type: string
+        example: "Project name 2"
       project.fk_account:
         description: |
           Account related to the project
@@ -388,8 +389,8 @@ traits:
       projects.fk_pm:
         deescription: |
           Project Management related to the project
-          required: false
-          example: 1
+        required: false
+        example: 1
     responses:
       200:
         body:
@@ -400,12 +401,21 @@ traits:
     body:
       application/json:
         properties: 
-          month.id:
+          project.project_name:
             description: |
-              Month identifier
-            type: number
-            required: true
-            example: 1
+              Project's name
+            required: false
+            example: "Project Name 2"
+          project.fk_account:
+            description: |
+              Account related to the project
+            required: false
+            example: 3
+          projects.fk_pm:
+            deescription: |
+              Project Management related to the project
+            required: false
+            example: 2
     responses:
       200:
         body:
