@@ -202,12 +202,12 @@ traits:
         description: |
           Month id
         type: number
-        required: true
+        required: false
         example: 1
       month.month_name:
         description: |
           Month naame
-        required: true
+        required: false
         example: "January"
     responses:
       200:
@@ -225,6 +225,12 @@ traits:
             type: number
             required: true
             example: 1
+          month.month_name:
+            description: |
+              Month naame
+            type: string
+            required: false
+            example: "January"
     responses:
       200:
         body:
