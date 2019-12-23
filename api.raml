@@ -7,7 +7,7 @@ baseUri: http://localhost:8081/pluskimble/v0
 uses:
   resource:  types/resource.raml
   kimble_status: types/kimble_status.raml
-  proyect_resource: types/proyect_resource.raml
+  resource_project: types/resource_project.raml
   attempt: types/attempt.raml
   resource_status: types/resource_status.raml
   resource_project_hours: types/resource_project_hours.raml
@@ -1165,38 +1165,40 @@ traits:
     body:
       application/json:
         properties:
-      resource_project.fk_resource:
-        type: number
-        required: false
-        example: 720079
-      resource_project.fk_project:
-        type: string
-        required: false
-        example: "KE013300"
-      resource_project.status:
-        type: number
-        required: false
-        example: 1
-      resource_project.starting_date:
-        type: string
-        required: false
-        example: "2019-02-29"
-      resource_project.end_date:
-        type: string
-        required: false
-        example: "2019-02-29"
+          resource_project.fk_resource:
+            type: number
+            required: true
+            example: 720079
+          resource_project.fk_project:
+            type: string
+            required: true
+            example: "KE013300"
+          resource_project.status:
+            type: number
+            required: true
+            example: 1
+          resource_project.starting_date:
+            type: string
+            required: false
+            example: "2019-02-29"
+          resource_project.end_date:
+            type: string
+            required: false
+            example: "2019-02-29"
     responses:
-        200:
-          body:
-            application/json:
-              type: resource_project
-              example: !include examples/resource_project/post_200.json
+      200:
+        body:
+          application/json:
+            type: resource_project
+            example: !include examples/resource_project/post_200.json
 
   /{resource_project-id}:
     get:
       uriParameters:
         resource_project-id:
           type: number
+          required: true
+          example: 1
           description: describe an element of the relation between resource project
           # minLength: 1
           # maxLength: 10
@@ -1211,30 +1213,30 @@ traits:
       body:
         application/json:
           properties:
-          resource_project.id:
-            type: number
-            required: false
-            example: 1
-          resource_project.fk_resource:
-            type: number
-            required: false
-            example: 720079
-          resource_project.fk_project:
-            type: string
-            required: false
-            example: "KE013300"
-          resource_project.status:
-            type: number
-            required: false
-            example: 1
-          resource_project.starting_date:
-            type: string
-            required: false
-            example: "2019-02-29"
-          resource_project.end_date:
-            type: string
-            required: false
-            example: "2019-02-29"
+            resource_project.id:
+              type: number
+              required: true
+              example: 1
+            resource_project.fk_resource:
+              type: number
+              required: true
+              example: 720079
+            resource_project.fk_project:
+              type: string
+              required: true
+              example: "KE013300"
+            resource_project.status:
+              type: number
+              required: true
+              example: 1
+            resource_project.starting_date:
+              type: string
+              required: false
+              example: "2019-02-29"
+            resource_project.end_date:
+              type: string
+              required: false
+              example: "2019-02-29"
       responses:
         200:
           body:
