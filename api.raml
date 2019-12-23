@@ -648,6 +648,10 @@ traits:
     body:
       application/json:
         properties:
+      resource.id:
+        type: number
+        required: true
+        example: 800216
       resource.name:
         type: string
         required: false
@@ -704,38 +708,43 @@ traits:
       body:
         application/json:
           properties:
+            resource.id:
+              type: number
+              required: true
+              example: 800216
             resource.name:
-        type: string
-        required: false
-        example: "ANTONIO"
-      resource.last_name:
-        type: string
-        required: false
-        example: "ANZURES"
-      resource.second_last_name:
-        type: string
-        required: false
-        example: "MONTECILLO"
-      resource.fkResourceStatus:
-        type: number
-        required: true
-        example: 1
-      resource.letters_gft:
-        type: string
-        required: false
-        example: "JOAZ"
-      resource.starting_date:
-        type: string
-        required: false
-        example: "2019-10-10"
-      resource.end_date:
-        type: string
-        required: false
-        example: "2023-10-10"
-      resource.comentary:
-        type: string
-        required: false
-        example: "PRUEBA DE COMENTARIO"
+              type: string
+              required: false
+              example: "ANTONIO"
+            resource.last_name:
+              type: string
+              required: false
+              example: "ANZURES"
+            resource.second_last_name:
+              type: string
+              required: false
+              example: "MONTECILLO"
+            resource.fkResourceStatus:
+              type: number
+              required: true
+              example: 1
+            resource.letters_gft:
+              type: string
+              required: false
+              example: "JOAZ"
+            resource.starting_date:
+              type: string
+              required: false
+              example: "2019-10-10"
+            resource.end_date:
+              type: string
+              required: false
+              example: "2023-10-10"
+            resource.comentary:
+              type: string
+              required: false
+              example: "PRUEBA DE COMENTARIO"
+
       responses:
         200:
           body:
