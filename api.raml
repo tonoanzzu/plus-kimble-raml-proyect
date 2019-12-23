@@ -868,20 +868,20 @@ traits:
     body:
       application/json:
         properties:
-      resource_status.id:
-        type: number
-        required: false
-        example: 1
-      resource_status.status_name:
-        type: string
-        required: true
-        example: "Active"
+          resource_status.id:
+            type: number
+            required: false
+            example: 1
+          resource_status.status_name:
+            type: string
+            required: true
+            example: "Active"
     responses:
-        200:
-          body:
-            application/json:
-              type: resource_status
-              example: !include examples/resource_status/post_200.json
+      200:
+        body:
+          application/json:
+            type: resource_status
+            example: !include examples/resource_status/post_200.json
   /{resource_status-id}:
     get:
       uriParameters:
@@ -900,13 +900,14 @@ traits:
       body:
         application/json:
           properties:
+            resource_status.id:
             type: number
-        required: false
-        example: 1
-      resource_status.status_name:
-        type: string
-        required: true
-        example: "Active"
+            required: false
+            example: 1
+          resource_status.status_name:
+            type: string
+            required: true
+            example: "Active"
 
       responses:
         200:
