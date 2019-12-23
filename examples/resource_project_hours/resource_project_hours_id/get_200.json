@@ -1,8 +1,8 @@
 {
 	"data": 
 		{
-			"id": 800216, 
+			"id": 241, 
 			"fk_hours_resource": 121, 
-			"fk_resource_projet": 123124
+			"fk_resource_projet": 800216
 		}
 }
