@@ -996,19 +996,19 @@ traits:
         description: |
           identify the date of the attempt
         type: string
-        required: true
+        required: false
         example: "2010-10-10T11:11:11"
       attempt.attempt_name:
         description: |
           identify the attempt name 
         type: string
-        required: true
+        required: false
         example: "Active"
       attempt.consecutive:
         description: |
           identify the number consecutive of the attempt
         type: number
-        required: true
+        required: false
         example: 20
       
     responses:
@@ -1209,16 +1209,19 @@ traits:
         description: |
           identify the status of the relation  between resources and projects
         type: string
+        required: false
         example: 203
       resource_project.starting_date:
         description: |
           identify the admission date of  relation  between resources and projects
         type: string
+        required: false
         example: "2018-12-10"
       resource_project.end_date:
         description: |
           identify the last date of the  relation  between resources and projects
         type: string
+        required: false
         example: "2019-10-10"
      
     responses:
