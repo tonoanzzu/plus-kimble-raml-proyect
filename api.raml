@@ -784,25 +784,28 @@ traits:
     body:
       application/json:
         properties:
-      kimble_status.id:
-        type: number
-        required: false
-        example: 1
-      kimble_status.status_name:
-        type: string
-        required: true
-        example: "Approved"
+          kimble_status.id:
+            type: number
+            required: true
+            example: 1
+          kimble_status.status_name:
+            type: string
+            required: true
+            example: "Approved"
+
     responses:
         200:
           body:
             application/json:
               type: kimble_status
               example: !include examples/kimble_status/post_200.json
+
   /{kimble_status-id}:
     get:
       uriParameters:
         kimble_status-id:
           type: number
+          required: true
           description: kimble_status identifier
           # minLength: 1
           # maxLength: 10
@@ -816,13 +819,14 @@ traits:
       body:
         application/json:
           properties:
-            type: number
-        required: false
-        example: 1
-      kimble_status.status_name:
-        type: string
-        required: true
-        example: "Approved"
+            kimble_status.id:
+             type: number
+             required: true
+             example: 1
+            kimble_status.status_name:
+              type: string
+              required: true
+              example: "Approved"
 
       responses:
         200:
