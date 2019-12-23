@@ -1,0 +1,12 @@
+{
+	"data": [
+		{
+			"id": 1, 
+			"status_name": "Active"
+		},
+		{
+			"id": 2, 
+			"status_name": "Inactive"
+		}
+	]
+}

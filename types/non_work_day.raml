@@ -1,0 +1,22 @@
+#%RAML 1.0
+types:
+  non_work_day:
+    type: object
+    description: Non-work day entity
+    properties:
+      id:
+        type: integer
+        description: Non-work day identifier
+        reuquired: true
+      day:
+        type: integer
+        description: Non-worrk day
+        required: true
+      fk_month:
+        type: integer
+        description: Foreign key of the month of the non-work day
+        required: true
+      year:
+        type: integer
+        description: Year to which the non-work day corresponds
+        required: true

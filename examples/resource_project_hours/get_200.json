@@ -1,0 +1,18 @@
+{
+	"data": 
+		[{
+			"id": 800216, 
+			"fk_hours_resource": 121, 
+			"fk_resource_projet": 123124
+		},
+		{
+			"id": 800217, 
+			"fk_hours_resource": 122, 
+			"fk_resource_projet": 123125
+		},
+		{
+			"id": 800218, 
+			"fk_hours_resource": 123, 
+			"fk_resource_projet": 123126
+		}]
+}

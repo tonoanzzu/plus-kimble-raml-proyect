@@ -1,0 +1,36 @@
+{
+	"data": [
+		{
+			"id": 800216, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-29", 
+			"end_date": "2019-07-29"
+		},
+		{
+			"id": 800217, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-20", 
+			"end_date": "2019-12-29"
+		},
+		{
+			"id": 800218, 
+			"fk_resorce": 720079, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2018-02-29", 
+			"end_date": "2019-06-29"
+		},
+		{
+			"id": 800219, 
+			"fk_resorce": 313, 
+			"fk_project": "KE013300", 
+			"status": 1, 
+			"starting_date": "2019-02-29", 
+			"end_date": "2019-10-29"
+		}
+	]
+}
