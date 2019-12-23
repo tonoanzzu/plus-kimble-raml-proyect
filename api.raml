@@ -479,36 +479,43 @@ traits:
       resource_hours.week:
         description: |
           Resource hours per week
+        type: number
         required: false
         example: 1
       resource_hours.hours:
         description: |
           Resource Hours
+        type: number
         required: false
         example: 1
       resource_hours.fk_state:
         deescription: |
           Relationship of the state with the hours of the resource
+        type: number
         required: false
         example: 1
       resource_hours.fk_month:
         deescription: |
           Relation of the month with the hours of the resource
+        type: number
         required: false
         example: 1
       resource_hours.fk_day:
         deescription: |
           Relationship of the day with the hours of the resource
+        type: number
         required: false
         example: 1
       resource_hours.fk_attemp:
         deescription: |
           Relation of the attempt with the hours of the resource
+        type: number
         required: false
         example: 1
       resource_hours.fk_resource:
         deescription: |
           Relation of the resource with the hours
+        type: number
         required: false
         example: 1
     responses:
@@ -525,7 +532,49 @@ traits:
             description: |
               Resource hours identifier
             type: number
-            required: true
+            required: false
+            example: 1
+          resource_hours.week:
+            description: |
+              Resource hours per week
+            type: number
+            required: false
+            example: 1
+          resource_hours.hours:
+            description: |
+              Resource Hours
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_state:
+            deescription: |
+              Relationship of the state with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_month:
+            deescription: |
+              Relation of the month with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_day:
+            deescription: |
+              Relationship of the day with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_attemp:
+            deescription: |
+              Relation of the attempt with the hours of the resource
+            type: number
+            required: false
+            example: 1
+          resource_hours.fk_resource:
+            deescription: |
+              Relation of the resource with the hours
+            type: number
+            required: false
             example: 1
     responses:
       200:
