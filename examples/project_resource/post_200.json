@@ -1,8 +1,23 @@
 {
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> master
 	"data": 
 	  {
 		"id": 1,
 		"status": 200,
 		"response": "Project_Resource updated with success"
 	  }
+<<<<<<< HEAD
   }
+=======
+	"data":
+		{
+            "message": "The relation resource and project has been successfully updated"
+		}
+}
+>>>>>>> fae1f6aaca02e7eb15f280d9b564d20390bd0ae4
+=======
+  }
+>>>>>>> master
