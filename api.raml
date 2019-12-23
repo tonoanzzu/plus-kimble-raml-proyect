@@ -38,19 +38,19 @@ traits:
         description: |
           Account id
         type: string
-        required: true
+        required: false
         example: "2"
       account.account_name:
         description: |
           Account namee
         type: string
-        required: true
+        required: false
         example: "Banco 1"
       account.fk_family:
         description: |
           Family to which the account belongs
         type: number
-        required: true
+        required: false
         example: 1
     responses:
       200:
@@ -62,12 +62,6 @@ traits:
     body:
       application/json:
         properties:
-          account.id:
-            description: |
-              Account id
-            type: string
-            required: true
-            example: "2"
           account.account_name:
             description: |
               Account name
@@ -133,13 +127,13 @@ traits:
         description: |
           Cost family id
         type: number
-        required: true
+        required: false
         example: 1
       cost_family.cost_family:
         description: |
           Cost family
         type: number
-        required: true
+        required: false
         example: "Cost family"
     responses:
       200:
@@ -151,12 +145,12 @@ traits:
     body:
       application/json:
         properties: 
-          cost_family.id:
+          cost_family.cost_family:
             description: |
-              Identifier of a cost family
-            type: number
-            required: true
-            example: 1
+              Cost family
+            type: string
+            required: false
+            example: "Cost family"
     responses:
       200:
         body:
