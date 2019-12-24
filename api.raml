@@ -308,12 +308,27 @@ traits:
     body:
       application/json:
         properties: 
-          month.id:
+          non_work_day.id:
             description: |
-              Month identifier
+              Non work day identifier
             type: number
-            required: true
+            required: false
             example: 1
+          non_work_day.day:
+            description: |
+              Non work day
+            required: false
+            example: 1
+          non_work_day.fk_month:
+            description: |
+              Non-working day of the month
+            required: false
+            example: 1
+          non_work_day.year:
+            deescription: |
+              Non working days of the year
+            required: false
+            example: 2019
     responses:
       200:
         body:
@@ -353,7 +368,7 @@ traits:
             non_work_day.year:
               type: number
               required: true
-              example: 1
+              example: 2019
       responses:
         200:
           body:
@@ -710,48 +725,48 @@ traits:
     body:
       application/json:
         properties:
-      resource.id:
-        type: number
-        required: true
-        example: 800216
-      resource.name:
-        type: string
-        required: false
-        example: "ANTONIO"
-      resource.last_name:
-        type: string
-        required: false
-        example: "ANZURES"
-      resource.second_last_name:
-        type: string
-        required: false
-        example: "MONTECILLO"
-      resource.fkResourceStatus:
-        type: number
-        required: true
-        example: 1
-      resource.letters_gft:
-        type: string
-        required: false
-        example: "JOAZ"
-      resource.starting_date:
-        type: string
-        required: false
-        example: "2019-10-10"
-      resource.end_date:
-        type: string
-        required: false
-        example: "2023-10-10"
-      resource.comentary:
-        type: string
-        required: false
-        example: "PRUEBA DE COMENTARIO"
-    responses:
-        200:
-          body:
-            application/json:
-              type: resource
-              example: !include examples/resources/post_200.json
+          resource.id:
+            type: number
+            required: true
+            example: 800216
+          resource.name:
+            type: string
+            required: false
+            example: "ANTONIO"
+          resource.last_name:
+            type: string
+            required: false
+            example: "ANZURES"
+          resource.second_last_name:
+            type: string
+            required: false
+            example: "MONTECILLO"
+          resource.fkResourceStatus:
+            type: number
+            required: true
+            example: 1
+          resource.letters_gft:
+            type: string
+            required: false
+            example: "JOAZ"
+          resource.starting_date:
+            type: string
+            required: false
+            example: "2019-10-10"
+          resource.end_date:
+            type: string
+            required: false
+            example: "2023-10-10"
+          resource.comentary:
+            type: string
+            required: false
+            example: "PRUEBA DE COMENTARIO"
+        responses:
+            200:
+              body:
+                application/json:
+                  type: resource
+                  example: !include examples/resources/post_200.json
   /{resource-id}:
     get:
       uriParameters:
