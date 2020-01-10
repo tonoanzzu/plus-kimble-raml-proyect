@@ -1,0 +1,26 @@
+#%RAML 1.0
+types:
+  attempt:
+    type: array
+    description: Entity representing attempts
+    properties:
+      id:
+        type: integer
+        description: identify of the attempt
+        required: false
+      crated_date:
+        type: string
+        description: identify the date of the attempt
+        required: false
+      name:
+        type: string
+        description: identify the name of the attempt like alias
+        required: false
+      attemp_date:
+        type: string
+        description: identify the second last name of the attempt
+        required: false
+      consecutive:
+        type: integer
+        description: identify the state of the attempt
+        required: false

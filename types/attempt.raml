@@ -1,27 +1,27 @@
 #%RAML 1.0
 types:
-  resource:
-    type:object
-    description: Entity that represent an resource
+  attempt:
+    type: object
+    description: Entity that represent an attempt
     properties:
       id:
-        type: number
-        description: identify of the resource
+        type: integer
+        description: identify of the attempt
         required: true
       crated_date:
         type: string
-        description: identify the name of the resource
+        description: identify the date of the attempt
         required: false
-      attemp_name:
-        type: number
-        description: identify the last name of the resource
+      name:
+        type: string
+        description: identify the last name of the attempt
         required: false
       attemp_date:
         type: string
-        description: identify the second last name of the resource
+        description: identify the second last name of the attempt
         required: false
       consecutive:
-        type: number
-        description: identify the state of the resource
+        type: integer
+        description: identify the state of the attempt
         required: false
       
