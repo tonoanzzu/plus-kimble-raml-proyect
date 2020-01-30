@@ -6,6 +6,7 @@ baseUri: http://localhost:8081/pluskimble/v0
 
 uses:
   resource:  types/resource.raml
+  person:  types/person.raml
   kimble_status: types/kimble_status.raml
   resource_project: types/resource_project.raml
   attempt: types/attempt.raml
@@ -827,6 +828,116 @@ uses:
           body:
             application/json:
               example: !include examples/resources/resource_id/patch_200.json
+
+/person:
+  description: |
+    person list
+  type: collection
+  get:
+    is: [pageable]
+    description: |
+      person lists
+    queryParameters:
+      person.id:
+        description: |
+          person id
+        type: number
+        required: false
+        example: 1
+      person.name:
+        description: |
+          person name
+        type: string
+        required: false
+        example: "ANTONIO"
+      person.last_name:
+        description: |
+          person last name
+        type: string
+        required: false
+        example: "ANZURES"
+      person.second_last_name:
+        description: |
+          person second last name
+        type: string
+        required: false
+        example: "MONTECILLO"
+      
+    responses:
+      200:
+        body:
+          application/json:
+            type: persons
+            example: !include examples/persons/get_200.json
+
+  post:
+    body:
+      application/json:
+        properties:
+          person.id:
+            type: number
+            required: true
+            example: 800216
+          person.name:
+            type: string
+            required: false
+            example: "ANTONIO"
+          person.last_name:
+            type: string
+            required: false
+            example: "ANZURES"
+          person.second_last_name:
+            type: string
+            required: false
+            example: "MONTECILLO"
+          
+        responses:
+            200:
+              body:
+                application/json:
+                  type: person
+                  example: !include examples/persons/post_200.json
+  /{person-id}:
+    get:
+      uriParameters:
+        person-id:
+          type: number
+          description: person identifier
+          # minLength: 1
+          # maxLength: 10
+      responses:
+        200:
+          body:
+            application/json:
+              type: person
+              example: !include examples/persons/person_id/get_200.json
+    patch:
+      body:
+        application/json:
+          properties:
+            person.id:
+              type: number
+              required: true
+              example: 800216
+            person.name:
+              type: string
+              required: false
+              example: "ANTONIO"
+            person.last_name:
+              type: string
+              required: false
+              example: "ANZURES"
+            person.second_last_name:
+              type: string
+              required: false
+              example: "MONTECILLO"
+            
+
+      responses:
+        200:
+          body:
+            application/json:
+              example: !include examples/persons/person_id/patch_200.json
 
 /kimble_status:
   description: |
